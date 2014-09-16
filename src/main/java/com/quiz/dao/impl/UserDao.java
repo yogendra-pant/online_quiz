@@ -18,8 +18,6 @@ import org.hibernate.SessionFactory;
 public class UserDao implements IUserDao{
     private SessionFactory sf;
 
-    public UserDao() {
-    }
 
     public UserDao(SessionFactory sf) {
         this.sf = sf;
