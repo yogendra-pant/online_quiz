@@ -9,9 +9,34 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>user register page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form action="users" method="post">
+	<table>
+		<tr>
+			<td>User Name:</td>
+			<td><input type="text" name="userName" /> </td>
+		</tr>
+		<tr>
+			<td>Email Id:</td>
+			<td><input type="text" name="emailId" /> </td>
+		</tr>
+		<tr>
+			<td>Phone Number.:</td>
+			<td><input type="text" name="phoneNumber" /> </td>
+		</tr>
+		<tr>
+			<td>Password:</td>
+                        <td><input type="password" name="password" /> </td>
+		</tr>
+                <tr>
+			<td> Confirm Password:</td>
+                        <td><input type="password" name="confirmPassword" /> </td>
+		</tr>
+	</table>
+	<input type="submit"/>
+	
+	</form>
     </body>
 </html>

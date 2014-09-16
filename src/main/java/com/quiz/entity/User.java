@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quiz.entity;
 
 import javax.persistence.Entity;
@@ -17,12 +16,22 @@ import javax.persistence.Id;
  */
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
     private String userName;
-    private String password;
     private String emailID;
+    private String phoneNumber;
+    private String password;
+    
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public User() {
     }
@@ -65,6 +74,5 @@ public class User {
     public void setEmailID(String emailID) {
         this.emailID = emailID;
     }
-   
-    
+
 }
