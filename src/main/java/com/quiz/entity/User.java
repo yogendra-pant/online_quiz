@@ -9,6 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+
 
 /**
  *
@@ -18,29 +24,29 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
+    @NotNull
+    @NotEmpty
     private String userName;
+    @NotNull
+    @NotEmpty
+    @Email
     private String emailID;
+   @Pattern(regexp="(^$|[0-9]{10})")
     private String phoneNumber;
+    @NotNull
+    @NotEmpty
     private String password;
     
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public User() {
     }
 
-    public User(int userId, String userName, String password, String emailID) {
-        this.userId = userId;
+    public User(String userName, String phoneNumber,String emailID, String password) {
         this.userName = userName;
+        this.phoneNumber = phoneNumber;
         this.password = password;
-        this.emailID = emailID;
+        this.emailID=emailID;
     }
 
     public int getUserId() {
@@ -59,20 +65,28 @@ public class User {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getEmailID() {
         return emailID;
     }
 
     public void setEmailID(String emailID) {
         this.emailID = emailID;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

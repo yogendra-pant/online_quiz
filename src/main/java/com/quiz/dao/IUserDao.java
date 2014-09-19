@@ -14,14 +14,6 @@ import java.util.List;
  * @author Yogendra
  */
 public interface IUserDao {
-    
-	//public abstract List<User> getAll();
-
-	public abstract void add(User user);
-
-	public abstract User get(String useName);
-
-	//public abstract void update(int userId, User user);
-
-	//public abstract void delete(int userId);
+        public abstract void add(User user);
+	public abstract User get(int userID);
 }

@@ -4,7 +4,8 @@
     Author     : Yogendra
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +13,8 @@
         <title>user register page</title>
     </head>
     <body>
-        <form action="users" method="post">
+        <form:form commandName="User" action="registerUser" method="post">
+              <form:errors path="*" element="div"/>
 	<table>
 		<tr>
 			<td>User Name:</td>
@@ -37,6 +39,6 @@
 	</table>
 	<input type="submit"/>
 	
-	</form>
+        </form:form>
     </body>
 </html>

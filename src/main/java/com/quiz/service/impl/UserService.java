@@ -6,25 +6,32 @@
 
 package com.quiz.service.impl;
 
+import com.quiz.dao.IUserDao;
 import com.quiz.dao.impl.UserDao;
+import com.quiz.entity.User;
 import com.quiz.service.IUserService;
+import javax.transaction.Transactional;
 
 /**
  *
  * @author Yogendra
  */
 public class UserService implements IUserService{
-    UserDao userDao;
+    IUserDao userDao;
     
-    public UserService() {
-    }
 
-    public UserService(UserDao userDao) {
+    public UserService(IUserDao userDao) {
         this.userDao = userDao;
     }
-
-   
-    
-    
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    @Override
+    public void add(User user) {
+        userDao.add(user);
+    }
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    @Override
+    public User get(int userID) {
+         return userDao.get(userID);
+    }   
     
 }

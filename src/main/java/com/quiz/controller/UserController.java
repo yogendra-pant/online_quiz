@@ -6,10 +6,43 @@
 
 package com.quiz.controller;
 
+import com.quiz.dao.IUserDao;
+import com.quiz.entity.User;
+import javax.annotation.Resource;
+import javax.validation.Valid;
+import org.springframework.jmx.export.annotation.ManagedAttribute;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 /**
  *
  * @author Yogendra
  */
+@Controller
 public class UserController {
-    
+    @Resource
+    IUserDao userDao;
+    @RequestMapping("/")
+    public String redirectRoot() {
+        return "redirect:/registerUser";
+    }
+    @RequestMapping(value = "/registerUser", method = RequestMethod.GET)
+    public String addUser(@ModelAttribute("user") User user) {
+    return "registerUser";
+    }
+    @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
+    public String addUser(@Valid User user, BindingResult result) {        
+        String view="/registerUser";
+        if(!result.hasErrors()){
+          userDao.add(user);
+        }else{
+            view="success";
+        }
+                return view;
+    }
+   
 }
