@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Email;
@@ -38,6 +40,8 @@ public class User {
     @NotNull
     @NotEmpty
     private String password;
+    @Transient
+    private String confirmPassword;
     
     public User() {
     }
