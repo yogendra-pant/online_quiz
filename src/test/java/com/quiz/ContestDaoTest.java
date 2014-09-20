@@ -18,7 +18,10 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("applicationContext.xml")
+@TransactionConfiguration
+@Transactional
 public class ContestDaoTest extends QuizTestCase {
 
     public ContestDaoTest() {

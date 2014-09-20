@@ -24,7 +24,7 @@ public class ContestStateServiceTest extends QuizTestCase {
     private User user;
 
     public ContestStateServiceTest() {
-      
+        System.setProperty("games.root.dir", "file:/test/data");
     }
 
     @Before
