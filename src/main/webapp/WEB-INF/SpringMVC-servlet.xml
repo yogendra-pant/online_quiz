@@ -58,9 +58,10 @@ http://www.springframework.org/schema/tx
     <bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" id="sessionFactory">
         <property name="dataSource" ref="dataSource"/>
         <property name="hibernateProperties" ref="hibernateProperties"/>
-        <property name="annotatedClasses">
+        <property name="packagesToScan">
             <list>
-                <value>com.quiz.entity.User</value>
+                <value>com.quiz.entities</value>
+              
             </list>
         </property>
     </bean>
