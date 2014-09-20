@@ -5,7 +5,7 @@
  */
 package com.quiz.service;
 
-import com.quiz.entity.User;
+import com.quiz.entities.User;
 
 /**
  *

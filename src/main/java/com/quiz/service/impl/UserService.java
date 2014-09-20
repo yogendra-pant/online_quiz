@@ -8,7 +8,7 @@ package com.quiz.service.impl;
 
 import com.quiz.dao.IUserDao;
 import com.quiz.dao.impl.UserDao;
-import com.quiz.entity.User;
+import com.quiz.entities.User;
 import com.quiz.service.IUserService;
 import javax.transaction.Transactional;
 

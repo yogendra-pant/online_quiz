@@ -6,7 +6,7 @@
 
 package com.quiz.dao;
 
-import com.quiz.entity.User;
+import com.quiz.entities.User;
 import java.util.List;
 
 /**
@@ -15,5 +15,5 @@ import java.util.List;
  */
 public interface IUserDao {
         public abstract void add(User user);
-	public abstract User get(int userID);
+	public abstract User get(long userID);
 }

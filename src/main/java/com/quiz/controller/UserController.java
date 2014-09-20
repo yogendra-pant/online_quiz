@@ -7,7 +7,7 @@
 package com.quiz.controller;
 
 import com.quiz.dao.IUserDao;
-import com.quiz.entity.User;
+import com.quiz.entities.User;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import org.springframework.jmx.export.annotation.ManagedAttribute;

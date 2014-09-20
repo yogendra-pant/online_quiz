@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.quiz.entity;
+package com.quiz.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +27,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
+    private long userId;
     @NotNull
     @NotEmpty
     private String userName;
@@ -55,9 +55,6 @@ public class User {
         this.confirmPassword=cofirmPassword;
     }
 
-    public int getUserId() {
-        return userId;
-    }
 
     public void setUserId(int userId) {
         this.userId = userId;
@@ -100,6 +97,10 @@ public class User {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+    
+    public long getId(){
+        return userId;
     }
 
 }

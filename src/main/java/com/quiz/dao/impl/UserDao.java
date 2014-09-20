@@ -7,7 +7,7 @@
 package com.quiz.dao.impl;
 
 import com.quiz.dao.IUserDao;
-import com.quiz.entity.User;
+import com.quiz.entities.User;
 import javax.transaction.Transactional;
 import org.hibernate.SessionFactory;
 
@@ -32,10 +32,12 @@ public class UserDao implements IUserDao{
     }
 
     @Override
-    public User get(int userID) {
+    public User get(long userID) {
     User user= (User)sf.getCurrentSession().get(User.class, userID);  
     return user;
     }
+
+    
 
  
     

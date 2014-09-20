@@ -1,6 +1,6 @@
 
 import com.quiz.dao.impl.UserDao;
-import com.quiz.entity.User;
+import com.quiz.entities.User;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -27,8 +27,8 @@ public class UserDaoTest {
 
         User user = new User("abc", "abc", "abc", "abc","abc");
         userDao.add(user);
-        Assert.assertTrue(user.getUserId() > 0);
-          user=userDao.get(user.getUserId());
+        Assert.assertTrue(user.getId() > 0);
+          user=userDao.get(user.getId());
           Assert.assertNotNull(user);
          
     }
