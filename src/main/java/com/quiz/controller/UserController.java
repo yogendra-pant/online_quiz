@@ -38,8 +38,14 @@ public class UserController {
     public String addUser(@Valid User user, BindingResult result) {        
         System.out.println("register user");
         String view="success";
+        String error="Password did not match";
         if(!result.hasErrors()){
-          userDao.add(user);
+            if(user.getConfirmPassword().equals(user.getPassword())){
+                                userDao.add(user);
+            }
+            else 
+              //  result.addError();
+         System.out.println("password mismatch!");
         }else{
             view="/registerUser";
         }

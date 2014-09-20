@@ -41,6 +41,8 @@ public class User {
     @NotEmpty
     private String password;
     @Transient
+    @NotNull
+    @NotEmpty
     private String confirmPassword;
 
        
