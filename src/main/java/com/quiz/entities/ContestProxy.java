@@ -7,47 +7,68 @@ package com.quiz.entities;
 
 import com.quiz.shared.entities.ContestState;
 import java.util.Date;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
  * @author Yogendra
  */
 public class ContestProxy {
-    private String name;
-    private String gameName;
+    @NotNull
+    @NotEmpty
+    private String contestName;
+//    @NotNull
+//    @NotEmpty
+//    @Pattern(regexp="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d")
+//    @Future
+    private Date contestDate;
+//    @NotNull
+//    @NotEmpty    
+//    @Pattern(regexp="^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")
     private Date startTime;
-    private int durationHours;
-    private int durationMinutes;
+//    @NotNull
+//    @NotEmpty
+    //@Pattern(regexp="^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")
+    private int contestDuration;
+    @NotNull
+    @NotEmpty
+    @Email
     private String organizerEmail;
-    private String organizer;
+    @NotNull
+    @NotEmpty
+    private String organizerName;
 
     public ContestProxy(){
         
     }
-    public ContestProxy(String name, String gameName, Date startTime, int durationHours, int durationMinutes, String organizerEmail, String organizer) {
-        this.name = name;
-        this.gameName = gameName;
+
+    public ContestProxy(String contestName, Date contestDate, Date startTime, int contestDuration, String organizerEmail, String organizerName) {
+        this.contestName = contestName;
+        this.contestDate = contestDate;
         this.startTime = startTime;
-        this.durationHours = durationHours;
-        this.durationMinutes = durationMinutes;       
+        this.contestDuration = contestDuration;
         this.organizerEmail = organizerEmail;
-        this.organizer = organizer;
+        this.organizerName = organizerName;
     }
 
-    public String getName() {
-        return name;
+    public String getContestName() {
+        return contestName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setContestName(String contestName) {
+        this.contestName = contestName;
     }
 
-    public String getGameName() {
-        return gameName;
+    public Date getContestDate() {
+        return contestDate;
     }
 
-    public void setGameName(String gameName) {
-        this.gameName = gameName;
+    public void setContestDate(Date contestDate) {
+        this.contestDate = contestDate;
     }
 
     public Date getStartTime() {
@@ -58,20 +79,12 @@ public class ContestProxy {
         this.startTime = startTime;
     }
 
-    public int getDurationHours() {
-        return durationHours;
+    public int getContestDuration() {
+        return contestDuration;
     }
 
-    public void setDurationHours(int durationHours) {
-        this.durationHours = durationHours;
-    }
-
-    public int getDurationMinutes() {
-        return durationMinutes;
-    }
-
-    public void setDurationMinutes(int durationMinutes) {
-        this.durationMinutes = durationMinutes;
+    public void setContestDuration(int contestDuration) {
+        this.contestDuration = contestDuration;
     }
 
     public String getOrganizerEmail() {
@@ -82,13 +95,14 @@ public class ContestProxy {
         this.organizerEmail = organizerEmail;
     }
 
-    public String getOrganizer() {
-        return organizer;
+    public String getOrganizerName() {
+        return organizerName;
     }
 
-    public void setOrganizer(String organizer) {
-        this.organizer = organizer;
+    public void setOrganizerName(String organizerName) {
+        this.organizerName = organizerName;
     }
     
+   
 
 }

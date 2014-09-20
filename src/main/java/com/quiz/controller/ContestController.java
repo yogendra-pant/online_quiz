@@ -5,9 +5,11 @@
  */
 package com.quiz.controller;
 
+
 import com.quiz.entities.ContestProxy;
-import com.quiz.entities.User;
+import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +22,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ContestController {
 
     @RequestMapping(value = "/addContest", method = RequestMethod.GET)
-    public String addContest(@ModelAttribute("contestProxy") ContestProxy contestProxy) {
-        return "addContest";
+    public String addUser(@ModelAttribute("contestProxy") ContestProxy contestProxy) {
+    return "addContest";
     }
+    @RequestMapping(value = "/addContest", method = RequestMethod.POST)
+    public String addUser(@Valid ContestProxy contestProxy, BindingResult result) {        
+        System.out.println(" contest register");
+        String view="success";
+        //String error="Password did not match";
+        if(!result.hasErrors()){
+          System.out.println(" validated inputs of contest: "+ contestProxy.getContestName());
+        }else{
+            view="/addContest";
+        }
+                return view;
+    }
+   
 }
