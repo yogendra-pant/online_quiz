@@ -16,6 +16,7 @@ import javax.transaction.Transactional;
  *
  * @author Yogendra
  */
+@Transactional
 public class UserService implements IUserService{
     IUserDao userDao;
     

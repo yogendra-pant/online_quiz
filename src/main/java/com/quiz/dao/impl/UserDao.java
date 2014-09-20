@@ -10,6 +10,7 @@ import com.quiz.dao.IUserDao;
 import com.quiz.entities.User;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -17,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Yogendra
  */
 @Repository
-@Transactional(rollbackFor = Throwable.class)
+@Transactional(propagation = Propagation.MANDATORY,rollbackFor = Throwable.class)
 public class UserDao extends AbstractDao implements IUserDao {
 
     public UserDao(SessionFactory sf) {

@@ -62,6 +62,7 @@
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
                 <prop key="hibernate.connection.pool_size">1</prop>
+                <prop key="javax.persistence.validation.mode">none</prop>
             </props>
         </property>
     </bean>

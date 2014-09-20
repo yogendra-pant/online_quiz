@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form:form commandName="contextProxy" action="addQuiz" method="post">
+        <form:form commandName="contestProxy" action="addQuiz" method="post">
             <form:errors path="*" element="div"/>
             <table>
                 <tr>
@@ -32,11 +32,11 @@
                 
                 <tr>
                     <td>Organizer Name:</td>
-                    <td><form:input type="text" path="organigerName" name="organigerName" /> </td>
+                    <td><form:input type="text" path="organizer" name="organigerName" /> </td>
                 </tr>
                 <tr>
                     <td>Organizer Email:</td>
-                    <td><form:input type="text" path="organigerEmail" name="organigerEmail" /> </td>
+                    <td><form:input type="text" path="organizerEmail" name="organigerEmail" /> </td>
                 </tr>
             </table>
             <input type="submit"/>

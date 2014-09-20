@@ -11,19 +11,18 @@ import com.quiz.shared.entities.ContestState;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 
 @Repository
-@Transactional
+@Transactional(propagation = Propagation.MANDATORY,rollbackFor = Throwable.class)
 public class ContestDao extends AbstractDao implements IContestDao{
 
     public ContestDao(SessionFactory sf) {
         super(sf);
     }
 
- 
-	
 
 	@Override
 	public List<ScheduledContest> getScheduledContests() {

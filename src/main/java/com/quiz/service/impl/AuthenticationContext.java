@@ -17,9 +17,7 @@ import com.quiz.entities.User;
 public class AuthenticationContext {
     
     public static User user;
-    public static void setUser(User user){
-        user=user;
-    }
+   
     
     public static User getCurrentUser(){
         return user;

@@ -28,7 +28,10 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class ContestService implements IContestService {
 
     private final IContestDao contestDao;

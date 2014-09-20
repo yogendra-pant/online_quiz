@@ -7,9 +7,11 @@ import com.quiz.service.IContestStateService;
 import com.quiz.shared.entities.ContestState;
 import java.util.Date;
 import java.util.List;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 
-
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class ContestStateService implements IContestStateService {
 
 	private final IContestDao contestDao;

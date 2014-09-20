@@ -8,10 +8,11 @@ import com.quiz.entities.Visibility;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-@Transactional(rollbackFor = Throwable.class)
+@Transactional(propagation = Propagation.MANDATORY,rollbackFor = Throwable.class)
 public class QuizDao extends AbstractDao implements IQuizDao {
 
     public QuizDao(){
