@@ -1,7 +1,6 @@
 package com.quiz.annotations;
 
 ;
-import java.util.Collection;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

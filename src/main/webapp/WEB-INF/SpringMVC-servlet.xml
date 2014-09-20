@@ -91,6 +91,4 @@ http://www.springframework.org/schema/tx
     <bean id="userDao" class="com.quiz.dao.impl.UserDao" >
         <constructor-arg index="0" ref="sessionFactory" />
     </bean>
-   
-
 </beans>
