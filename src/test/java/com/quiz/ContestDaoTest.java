@@ -1,3 +1,5 @@
+package com.quiz;
+
 
 
 import com.quiz.entities.Contestant;

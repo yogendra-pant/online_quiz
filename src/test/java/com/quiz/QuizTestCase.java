@@ -1,3 +1,5 @@
+package com.quiz;
+
 
 import com.quiz.dao.IContestDao;
 import com.quiz.dao.IQuizDao;

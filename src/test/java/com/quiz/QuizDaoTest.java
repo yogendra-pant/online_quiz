@@ -1,3 +1,5 @@
+package com.quiz;
+
 
 import com.quiz.dao.impl.QuizDao;
 import com.quiz.entities.Question;
