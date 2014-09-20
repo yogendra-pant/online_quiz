@@ -34,7 +34,7 @@ public class User {
     @NotNull
     @NotEmpty
     @Email
-    private String emailID;
+    private String emailId;
    @Pattern(regexp="(^$|[0-9]{10})")
     private String phoneNumber;
     @NotNull
@@ -42,15 +42,17 @@ public class User {
     private String password;
     @Transient
     private String confirmPassword;
-    
+
+       
     public User() {
     }
 
-    public User(String userName, String phoneNumber,String emailID, String password) {
+    public User(String userName, String phoneNumber,String emailID, String password, String cofirmPassword) {
         this.userName = userName;
         this.phoneNumber = phoneNumber;
         this.password = password;
-        this.emailID=emailID;
+        this.emailId=emailID;
+        this.confirmPassword=cofirmPassword;
     }
 
     public int getUserId() {
@@ -69,12 +71,12 @@ public class User {
         this.userName = userName;
     }
 
-    public String getEmailID() {
-        return emailID;
+    public String getEmailId() {
+        return emailId;
     }
 
-    public void setEmailID(String emailID) {
-        this.emailID = emailID;
+    public void setEmailId(String emailID) {
+        this.emailId = emailID;
     }
 
     public String getPhoneNumber() {
@@ -91,6 +93,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+     public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
 }

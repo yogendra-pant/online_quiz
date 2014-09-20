@@ -36,11 +36,12 @@ public class UserController {
     }
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
     public String addUser(@Valid User user, BindingResult result) {        
-        String view="/registerUser";
+        System.out.println("register user");
+        String view="success";
         if(!result.hasErrors()){
           userDao.add(user);
         }else{
-            view="success";
+            view="/registerUser";
         }
                 return view;
     }

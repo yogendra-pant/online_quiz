@@ -25,7 +25,7 @@ public class UserDaoTest {
     @Test
     public void addUserTest() {
 
-        User user = new User("abc", "abc", "abc", "abc");
+        User user = new User("abc", "abc", "abc", "abc","abc");
         userDao.add(user);
         Assert.assertTrue(user.getUserId() > 0);
           user=userDao.get(user.getUserId());

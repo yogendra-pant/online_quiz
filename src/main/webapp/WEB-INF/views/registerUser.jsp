@@ -13,28 +13,28 @@
         <title>user register page</title>
     </head>
     <body>
-        <form:form commandName="User" action="registerUser" method="post">
+        <form:form commandName="user" action="registerUser" method="post">
               <form:errors path="*" element="div"/>
 	<table>
 		<tr>
 			<td>User Name:</td>
-			<td><input type="text" name="userName" /> </td>
+			<td><form:input type="text" path="userName" name="userName" /> </td>
 		</tr>
 		<tr>
 			<td>Email Id:</td>
-			<td><input type="text" name="emailId" /> </td>
+			<td><form:input type="text" path="emailId" name="emailId" /> </td>
 		</tr>
 		<tr>
 			<td>Phone Number.:</td>
-			<td><input type="text" name="phoneNumber" /> </td>
+			<td><form:input type="text" path="phoneNumber" name="phoneNumber" /> </td>
 		</tr>
 		<tr>
 			<td>Password:</td>
-                        <td><input type="password" name="password" /> </td>
+                        <td><form:input type="password" path="password" name="password" /> </td>
 		</tr>
                 <tr>
 			<td> Confirm Password:</td>
-                        <td><input type="password" name="confirmPassword" /> </td>
+                        <td><form:input type="password" path="confirmPassword" name="confirmPassword" /> </td>
 		</tr>
 	</table>
 	<input type="submit"/>
