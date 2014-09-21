@@ -11,7 +11,7 @@
         <intercept-url pattern="/**" access="ROLE_USER"/>
 <!--        <intercept-url pattern="/books/{id}" access="ROLE_ADMIN'"/>-->
         <!--<intercept-url pattern="/addBook.html" access="hasRole('ROLE_ADMIN')"/>-->
-        <form-login login-page="/login.jsp" default-target-url="/index.html"/>
+        <form-login login-page="/login.jsp" default-target-url="/main"/>
         <logout logout-success-url="/login.jsp"/>
     </http>	
 

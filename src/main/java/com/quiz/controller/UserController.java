@@ -27,10 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UserController {
     @Resource
     IUserService userService;
-    @RequestMapping("/")
-    public String redirectRoot() {
-        return "redirect:/registerUser";
-    }
+    
     @RequestMapping(value = "/registerUser", method = RequestMethod.GET)
     public String addUser(@ModelAttribute("user") User user) {
     return "registerUser";

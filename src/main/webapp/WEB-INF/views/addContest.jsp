@@ -28,12 +28,6 @@
                     <form:errors path="contestDate" cssClass="error" />
                     </td>
                 </tr>
-<tr>
-                    <td>Start Time:</td>
-                    <td><form:input type="text" path="startTime" name="startTime" />
-                    <form:errors path="startTime" cssClass="error" />
-                    </td>
-                </tr>
                 <tr>
                     <td>Contest Duration:</td>
                     <td><form:input type="text" path="contestDuration" name="contestDuration" />

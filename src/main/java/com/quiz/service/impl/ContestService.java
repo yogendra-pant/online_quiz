@@ -35,11 +35,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class ContestService implements IContestService {
 
     private final IContestDao contestDao;
-    private final IQuizDao gameDao;
+    private final IQuizDao quizDao;
 
-    public ContestService(IContestDao contestDao, IQuizDao gameDao) {
+    public ContestService(IContestDao contestDao, IQuizDao quizDao) {
         this.contestDao = contestDao;
-        this.gameDao = gameDao;
+        this.quizDao = quizDao;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class ContestService implements IContestService {
         if (contestant == null) {
 //			logger.error("Invalid contestant for contest {}, for user {}", contestId, AuthenticationContext.getCurrentUser().getId());
         }
-        Quiz game = gameDao.getQuiz(contest.getQuiz().getId());
+        Quiz game = quizDao.getQuiz(contest.getQuiz().getId());
        
 
         if (game == null) {
@@ -131,7 +131,7 @@ public class ContestService implements IContestService {
 
     @Override
     public ScheduleContestResult scheduleContest(ContestInfo contestInfo) {
-        if (contestInfo.getStartTime().getTime() < (System.currentTimeMillis())) {
+        if (contestInfo.getContestDate().getTime() < (System.currentTimeMillis())) {
             return ScheduleContestResult.StartDateInvalid;
         }
 
@@ -139,11 +139,11 @@ public class ContestService implements IContestService {
 //        s.setGameName(contestInfo.getGameName());
         s.setName(contestInfo.getContestName());
 
-        long date = contestInfo.getStartTime().getTime();
+        long date = contestInfo.getContestDate().getTime();
         s.setStartTime(new Date(date));
 
-        s.setDurationHours(contestInfo.getStartTime().getHours());
-        s.setDurationMinutes(contestInfo.getStartTime().getMinutes());
+        s.setDurationHours(contestInfo.getContestDate().getHours());
+        s.setDurationMinutes(contestInfo.getContestDate().getMinutes());
         s.setContestState(ContestState.OPEN_FOR_REGISTRATION);
         s.setOrganizer(contestInfo.getOrganizerName());
         s.setOrganizerEmail(contestInfo.getOrganizerEmail());
@@ -223,7 +223,7 @@ public class ContestService implements IContestService {
 //
 //        if (failedCounter == 0 && !invalidTest) {
 //            t.setCompletedLevelTestsIndicator("");
-//            Quiz game = gameDao.getGame(contest.getGameName());
+//            Quiz game = quizDao.getGame(contest.getGameName());
 //
 //            LevelTimer l = new LevelTimer();
 //            l.setLevel(t.getCurrentLevel());
@@ -291,12 +291,12 @@ public class ContestService implements IContestService {
 
     @Override
     public ScheduleContestResult updateContest(ContestInfo contestInfo) {
-        if (contestInfo.getStartTime().getTime() < (System.currentTimeMillis())) {
+        if (contestInfo.getContestDate().getTime() < (System.currentTimeMillis())) {
             return ScheduleContestResult.StartDateInvalid;
         }
         ScheduledContest s = (ScheduledContest) contestDao.getContest(contestInfo.getContestId());
 
-        s.setStartTime(contestInfo.getStartTime());
+        s.setStartTime(contestInfo.getContestDate());
 //        s.setDurationHours(contestInfo.getDurationHours());
 //        s.setDurationMinutes(contestInfo.getDurationMinutes());
 
@@ -316,7 +316,7 @@ public class ContestService implements IContestService {
     @Override
     public int getNumberOfLevels(long contestId) {
         QuizContest contest = contestDao.getContest(contestId);
-        Quiz game = gameDao.getQuiz(contest.getQuiz().getId());
+        Quiz game = quizDao.getQuiz(contest.getQuiz().getId());
         return game.getNrOfQuestions();
     }
 
