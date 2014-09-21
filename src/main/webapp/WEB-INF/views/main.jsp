@@ -21,8 +21,6 @@
                 <tr>
                     <td>${contest.name}</td>
                     <td>${contest.organizerEmail}</td>
-             
-                   
                 </tr>
             </c:forEach>
         </table>

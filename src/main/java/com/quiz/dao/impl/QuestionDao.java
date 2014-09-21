@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional(propagation = Propagation.MANDATORY,rollbackFor = Throwable.class)
 public class QuestionDao extends AbstractDao implements IQuestionDao{
-private Map<Integer, Question> questions = new HashMap<>();
+
     public QuestionDao(SessionFactory sf) {
         super(sf);
     }
@@ -42,7 +42,7 @@ private Map<Integer, Question> questions = new HashMap<>();
         return question;
     }
     public List<Question> getAll() {
-		return new ArrayList<Question>(questions.values());
+		return getQuery("select q from Question q").list();
 	}
     
 }

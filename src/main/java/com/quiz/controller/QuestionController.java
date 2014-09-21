@@ -9,6 +9,7 @@ package com.quiz.controller;
 import com.quiz.dao.IQuestionDao;
 import com.quiz.entities.Question;
 import com.quiz.service.IQuestionService;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -33,15 +34,17 @@ public class QuestionController {
 //    }
      @RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
     public String getAll(Model model) {
-        model.addAttribute("questions", questionService.getAll());
+        List<Question> questions=questionService.getAll();
+        model.addAttribute("questions", questions);
          model.addAttribute("question", new Question());
+         System.out.println(questions.size());
         return "addQuestion";
     }
     @RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
     public String addUser(@Valid Question question, BindingResult result) {   
             questionService.add(question);
             System.out.println("question persisted!");
-            return "/addQuestion";
+            return "redirect:addQuestion";
     }
    
 }

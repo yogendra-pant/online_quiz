@@ -1,9 +1,7 @@
-<%-- 
-    Document   : addQuestion
-    Created on : Sep 20, 2014, 3:24:00 PM
-    Author     : Yogendra
---%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
@@ -37,15 +35,15 @@
                 <td>Update</td>
                 <td>Delete</td>
             </tr>
-<%--	<c:forEach var="ques" items="${questions}">
+	<c:forEach var="ques" items="${questions}">
 	<tr>
      
-		<td>${quest.question}</td>
-		<td>${quest.solution}</td>
+		<td>${ques.question}</td>
+		<td>${ques.solution}</td>
 		<td>update</td>
 		<td>Delete</td>
 	</tr>
-	</c:forEach> --%>
+	</c:forEach> 
 	</table>
     </body>
 </html>
