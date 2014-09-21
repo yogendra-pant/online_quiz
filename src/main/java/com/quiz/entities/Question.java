@@ -3,28 +3,51 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quiz.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
  * @author puneetkhanal
  */
-@Entity 
-public class Question extends EntityObject{
+@Entity
+public class Question extends EntityObject {
 
+     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long questionId;
+    @NotNull
+    @NotEmpty
     private String question;
+    @NotNull
+    @NotEmpty
     private String solution;
-    public Question(){
-        
+
+    public Question() {
+
     }
+
     
-    public Question(String question,String solution){
-        this.question=question;
-        this.solution=solution;
+
+    public Question(String question, String solution) {
+        this.question = question;
+        this.solution = solution;
     }
+
+    public long getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestioId(long questionId) {
+        this.questionId = questionId;
+    }
+
     public String getQuestion() {
         return question;
     }
@@ -40,6 +63,5 @@ public class Question extends EntityObject{
     public void setSolution(String solution) {
         this.solution = solution;
     }
-    
-    
+
 }

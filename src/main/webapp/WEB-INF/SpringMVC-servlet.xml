@@ -56,7 +56,14 @@ http://www.springframework.org/schema/tx
         <constructor-arg index="0" ref="userDao" />
              
     </bean>
+     <bean id="questionService" class="com.quiz.service.impl.QuestionService">
+        <constructor-arg index="0" ref="questionDao" />
+             
+    </bean>
     <bean id="userDao" class="com.quiz.dao.impl.UserDao" >
+        <constructor-arg index="0" ref="sessionFactory" />
+    </bean>
+     <bean id="questionDao" class="com.quiz.dao.impl.QuizDao" >
         <constructor-arg index="0" ref="sessionFactory" />
     </bean>
 </beans>

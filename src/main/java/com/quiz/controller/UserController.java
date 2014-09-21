@@ -8,6 +8,7 @@ package com.quiz.controller;
 
 import com.quiz.dao.IUserDao;
 import com.quiz.entities.User;
+import com.quiz.service.IUserService;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import org.springframework.jmx.export.annotation.ManagedAttribute;
@@ -25,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UserController {
     @Resource
-    IUserDao userDao;
+    IUserService userService;
     @RequestMapping("/")
     public String redirectRoot() {
         return "redirect:/registerUser";
@@ -41,7 +42,7 @@ public class UserController {
         String error="Password did not match";
         if(!result.hasErrors()){
             if(user.getConfirmPassword().equals(user.getPassword())){
-                                userDao.add(user);
+                                userService.add(user);
             }
             else 
               //  result.addError();
