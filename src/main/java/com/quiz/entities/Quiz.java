@@ -23,7 +23,7 @@ public class Quiz extends EntityObject{
     
     private Visibility visibility;
     
-    private List<Question> questions;
+    private List<Question> questions=new ArrayList<Question>();
     
     public Quiz(){
         

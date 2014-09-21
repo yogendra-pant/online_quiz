@@ -195,6 +195,9 @@ public class QuizService implements IQuizService {
     @Override
     public ContestState getContestState(long contestId) {
         return contestDao.getContestState(contestId);
+    }     
+    public void storeQuiz(Quiz quiz){
+        gameDao.storeQuiz(quiz);
     }
 
 }

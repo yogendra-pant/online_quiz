@@ -25,6 +25,8 @@ public class UserDao extends AbstractDao implements IUserDao {
         super(sf);
     }
 
+   
+
     @Override
     public void add(User user) {
 

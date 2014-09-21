@@ -32,19 +32,19 @@ public class QuestionController {
 //    public String addUser(@ModelAttribute("question") Question question) {
 //    return "addQuestion";
 //    }
-     @RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
-    public String getAll(Model model) {
-        List<Question> questions=questionService.getAll();
-        model.addAttribute("questions", questions);
-         model.addAttribute("question", new Question());
-         System.out.println(questions.size());
-        return "addQuestion";
-    }
-    @RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
-    public String addUser(@Valid Question question, BindingResult result) {   
-            questionService.add(question);
-            System.out.println("question persisted!");
-            return "redirect:addQuestion";
-    }
+//     @RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
+//    public String getAllQuestion(Model model) {
+//        List<Question> questions=questionService.getAll();
+//        model.addAttribute("questions", questions);
+//         model.addAttribute("question", new Question());
+//         System.out.println(questions.size());
+//        return "addQuestion";
+//    }
+//    @RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
+//    public String addQuestion(@Valid Question question, BindingResult result) {   
+//            questionService.add(question);
+//            System.out.println("question persisted!");
+//            return "redirect:addQuestion";
+//    }
    
 }
