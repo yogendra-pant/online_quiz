@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form:form commandName="contestProxy" action="addContest" method="post">
+        <form:form commandName="contestInfo" action="addContest" method="post">
             <%--<form:errors path="*" element="div"/>--%>
             <table>
                 

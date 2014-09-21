@@ -77,12 +77,12 @@ public class QuizService implements IQuizService {
         info.setContestId(contest.getId());
         info.setContestName(contest.getName());
 //		info.setGameName(contest.getGameName());
-        info.setState(contest.getContestState());
-        info.setOrganizer(contest.getOrganizer());
+//        info.setState(contest.getContestState());
+//        info.setOrganizer(contest.getOrganizer());
         info.setOrganizerEmail(contest.getOrganizerEmail());
         info.setStartTime(contest.getStartTime());
-        info.setDurationHours(contest.getDurationHours());
-        info.setDurationMinutes(contest.getDurationMinutes());
+//        info.setDurationHours(contest.getDurationHours());
+//        info.setDurationMinutes(contest.getDurationMinutes());
         return info;
     }
 

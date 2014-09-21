@@ -142,11 +142,11 @@ public class ContestService implements IContestService {
         long date = contestInfo.getStartTime().getTime();
         s.setStartTime(new Date(date));
 
-        s.setDurationHours(contestInfo.getDurationHours());
-        s.setDurationMinutes(contestInfo.getDurationMinutes());
+        s.setDurationHours(contestInfo.getStartTime().getHours());
+        s.setDurationMinutes(contestInfo.getStartTime().getMinutes());
         s.setContestState(ContestState.OPEN_FOR_REGISTRATION);
-        s.setOrganizer(contestInfo.getOrganizer());
-        s.setOrganizerEmail(contestInfo.getOrgainzerEmail());
+        s.setOrganizer(contestInfo.getOrganizerName());
+        s.setOrganizerEmail(contestInfo.getOrganizerEmail());
 
         contestDao.storeContest(s);
 
@@ -297,8 +297,8 @@ public class ContestService implements IContestService {
         ScheduledContest s = (ScheduledContest) contestDao.getContest(contestInfo.getContestId());
 
         s.setStartTime(contestInfo.getStartTime());
-        s.setDurationHours(contestInfo.getDurationHours());
-        s.setDurationMinutes(contestInfo.getDurationMinutes());
+//        s.setDurationHours(contestInfo.getDurationHours());
+//        s.setDurationMinutes(contestInfo.getDurationMinutes());
 
         contestDao.storeContest(s);
 

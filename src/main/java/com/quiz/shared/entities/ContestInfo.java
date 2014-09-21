@@ -1,137 +1,125 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.quiz.shared.entities;
 
+import com.quiz.shared.entities.ContestState;
 import java.util.Date;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
-
+/**
+ *
+ * @author Yogendra
+ */
 public class ContestInfo {
-	/**
-   *
-   */
+    
+    private long contestId;
+    @NotNull
+    @NotEmpty
+    private String contestName;
+    @NotNull
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date contestDate;
 
-	public ContestInfo() {
+    @NotNull
+    @DateTimeFormat(pattern = "hh:mm:ss")
+    private Date startTime;
 
-	}
+    private int contestDuration;
+    @NotNull
+    @NotEmpty
+    @Email
+    private String organizerEmail;
+    @NotNull
+    @NotEmpty
+    private String organizerName;
+    
+    private ContestState contestState;
 
-	private static final long serialVersionUID = -367693634233483706L;
+    public ContestInfo(){
+        
+    }
 
-	private String contestName;
+    public ContestInfo(String contestName, Date contestDate, Date startTime, int contestDuration, String organizerEmail, String organizerName) {
+        this.contestName = contestName;
+        this.contestDate = contestDate;
+        this.startTime = startTime;
+        this.contestDuration = contestDuration;
+        this.organizerEmail = organizerEmail;
+        this.organizerName = organizerName;
+    }
 
-	private String organizer;
+    public ContestState getContestState() {
+        return contestState;
+    }
 
-	private Date startTime;
+    public void setContestState(ContestState contestState) {
+        this.contestState = contestState;
+    }
 
-	private int durationHours;
+    public long getContestId() {
+        return contestId;
+    }
 
-	private int durationMinutes;
+    public void setContestId(long contestId) {
+        this.contestId = contestId;
+    }
 
-	private String gameName;
+    public String getContestName() {
+        return contestName;
+    }
 
-	private ContestState state;
+    public void setContestName(String contestName) {
+        this.contestName = contestName;
+    }
 
-	private String organizerEmail;
+    public Date getContestDate() {
+        return contestDate;
+    }
 
-	private long contestId;
+    public void setContestDate(Date contestDate) {
+        this.contestDate = contestDate;
+    }
 
-	public ContestInfo(String contestName, String organizer, Date startTime, int durationHours, int durationMinutes, String gameName,
-			ContestState state) {
-		this.setContestName(contestName);
-		this.setOrganizer(organizer);
-		this.setStartTime(startTime);
-		this.setDurationHours(durationHours);
-		this.setDurationMinutes(durationMinutes);
-		this.gameName = gameName;
-		this.state = state;
-	}
+    public Date getStartTime() {
+        return startTime;
+    }
 
-	public int getDurationHours() {
-		return durationHours;
-	}
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
 
-	public ContestInfo(String contestName, String organizer, String organizerEmail, Date startTime, int durationHours, int durationMinutes,
-			String gameName, ContestState state) {
-		this(contestName, organizer, startTime, durationHours, durationMinutes, gameName, state);
-		this.setOrganizerEmail(organizerEmail);
-	}
+    public int getContestDuration() {
+        return contestDuration;
+    }
 
-	public int getDurationMinutes() {
-		return durationMinutes;
-	}
+    public void setContestDuration(int contestDuration) {
+        this.contestDuration = contestDuration;
+    }
 
-	public String getName() {
-		return getContestName();
-	}
+    public String getOrganizerEmail() {
+        return organizerEmail;
+    }
 
-	public String getOrganizer() {
-		return organizer;
-	}
+    public void setOrganizerEmail(String organizerEmail) {
+        this.organizerEmail = organizerEmail;
+    }
 
-	public ContestState getState() {
-		return state;
-	}
+    public String getOrganizerName() {
+        return organizerName;
+    }
 
-	public void setState(ContestState state) {
-		this.state = state;
-	}
-
-	public String getGameName() {
-		return gameName;
-	}
-
-	public void setGameName(String gameName) {
-		this.gameName = gameName;
-	}
-
-	public int compareTo(ContestInfo contestInfo) {
-		// return this.contestName.compareTo(contestInfo.contestName);
-		return contestInfo.getStartTime().compareTo(this.getStartTime());
-	}
-
-	public String getOrgainzerEmail() {
-		return getOrganizerEmail();
-	}
-
-	public Date getStartTime() {
-		return startTime;
-	}
-
-	public void setContestName(String contestName) {
-		this.contestName = contestName;
-	}
-
-	public String getContestName() {
-		return contestName;
-	}
-
-	public void setOrganizer(String organizer) {
-		this.organizer = organizer;
-	}
-
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
-	}
-
-	public void setDurationHours(int durationHours) {
-		this.durationHours = durationHours;
-	}
-
-	public void setDurationMinutes(int durationMinutes) {
-		this.durationMinutes = durationMinutes;
-	}
-
-	public void setOrganizerEmail(String organizerEmail) {
-		this.organizerEmail = organizerEmail;
-	}
-
-	public String getOrganizerEmail() {
-		return organizerEmail;
-	}
-
-	public void setContestId(long contestId) {
-		this.contestId = contestId;
-	}
-
-	public long getContestId() {
-		return contestId;
-	}
+    public void setOrganizerName(String organizerName) {
+        this.organizerName = organizerName;
+    }
+    
+   
 
 }
