@@ -46,7 +46,7 @@ public class ContestStateServiceTest extends QuizTestCase {
         contestInfo.setContestName("xxxx");
 //        contestInfo.setDurationHours(1);
 //        contestInfo.setDurationMinutes(1);
-        contestInfo.setStartTime(new Date());
+        contestInfo.setContestDate(new Date());
 //        contestInfo.setGameName("bowling");
 
         contestApi.scheduleContest(contestInfo);

@@ -19,20 +19,18 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author Yogendra
  */
 public class ContestInfo {
-    
+
     private long contestId;
     @NotNull
     @NotEmpty
     private String contestName;
     @NotNull
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+    @Future
     private Date contestDate;
-
     @NotNull
     @DateTimeFormat(pattern = "hh:mm:ss")
-    private Date startTime;
-
-    private int contestDuration;
+    private Date contestDuration;
     @NotNull
     @NotEmpty
     @Email
@@ -40,17 +38,16 @@ public class ContestInfo {
     @NotNull
     @NotEmpty
     private String organizerName;
-    
+
     private ContestState contestState;
 
-    public ContestInfo(){
-        
+    public ContestInfo() {
+
     }
 
-    public ContestInfo(String contestName, Date contestDate, Date startTime, int contestDuration, String organizerEmail, String organizerName) {
+    public ContestInfo(String contestName, Date contestDate, Date startTime, Date contestDuration, String organizerEmail, String organizerName) {
         this.contestName = contestName;
         this.contestDate = contestDate;
-        this.startTime = startTime;
         this.contestDuration = contestDuration;
         this.organizerEmail = organizerEmail;
         this.organizerName = organizerName;
@@ -88,19 +85,11 @@ public class ContestInfo {
         this.contestDate = contestDate;
     }
 
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public int getContestDuration() {
+    public Date getContestDuration() {
         return contestDuration;
     }
 
-    public void setContestDuration(int contestDuration) {
+    public void setContestDuration(Date contestDuration) {
         this.contestDuration = contestDuration;
     }
 
@@ -119,7 +108,5 @@ public class ContestInfo {
     public void setOrganizerName(String organizerName) {
         this.organizerName = organizerName;
     }
-    
-   
 
 }

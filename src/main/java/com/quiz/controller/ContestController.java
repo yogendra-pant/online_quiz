@@ -5,10 +5,10 @@
  */
 package com.quiz.controller;
 
-
-
+import com.quiz.service.IContestService;
 import com.quiz.shared.entities.ContestInfo;
 import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,21 +22,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ContestController {
 
+    @Autowired
+    private IContestService contestService;
+    
     @RequestMapping(value = "/addContest", method = RequestMethod.GET)
     public String addUser(@ModelAttribute("contestInfo") ContestInfo contestInfo) {
-    return "addContest";
+        return "addContest";
     }
+
     @RequestMapping(value = "/addContest", method = RequestMethod.POST)
-    public String addUser(@Valid ContestInfo contestInfo, BindingResult result) {        
-        System.out.println(" contest register");
-        String view="success";
-        //String error="Password did not match";
-        if(!result.hasErrors()){
-          System.out.println(" validated inputs of contest: "+ contestInfo.getContestName());
-        }else{
-            view="/addContest";
+    public String addUser(@Valid ContestInfo contestInfo, BindingResult result) {
+        String view = "redirect:index.html";
+        if (!result.hasErrors()) {
+            System.out.println(" validated inputs of contest: " + contestInfo.getContestName());
+            contestService.scheduleContest(contestInfo);
+        } else {
+            view = "/addContest";
         }
-                return view;
+        return view;
     }
-   
+
 }

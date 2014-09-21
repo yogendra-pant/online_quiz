@@ -29,7 +29,7 @@ public class UserController {
     IUserService userService;
     @RequestMapping("/")
     public String redirectRoot() {
-        return "redirect:/registerUser";
+        return "redirect:/main";
     }
     @RequestMapping(value = "/registerUser", method = RequestMethod.GET)
     public String addUser(@ModelAttribute("user") User user) {
