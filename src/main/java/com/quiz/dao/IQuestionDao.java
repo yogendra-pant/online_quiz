@@ -6,6 +6,7 @@
 package com.quiz.dao;
 
 import com.quiz.entities.Question;
+import java.util.List;
 
 /**
  *
@@ -16,5 +17,7 @@ public interface IQuestionDao {
     public abstract void add(Question question);
 
     public abstract Question get(int questionId);
+
+    public abstract List<Question> getAll();
 
 }

@@ -12,6 +12,7 @@ import com.quiz.service.IQuestionService;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,20 +27,21 @@ public class QuestionController {
       @Resource
       IQuestionService questionService;
       
-    @RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
-    public String addUser(@ModelAttribute("question") Question question) {
-    return "addQuestion";
+//    @RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
+//    public String addUser(@ModelAttribute("question") Question question) {
+//    return "addQuestion";
+//    }
+     @RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
+    public String getAll(Model model) {
+        model.addAttribute("questions", questionService.getAll());
+         model.addAttribute("question", new Question());
+        return "addQuestion";
     }
     @RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
     public String addUser(@Valid Question question, BindingResult result) {   
-        String view="success";
-        if(!result.hasErrors()){
             questionService.add(question);
             System.out.println("question persisted!");
-        }else{
-            view="/addQuestion";
-        }
-        return view;
+            return "/addQuestion";
     }
    
 }

@@ -10,6 +10,10 @@ import com.quiz.dao.AbstractDao;
 import com.quiz.dao.IQuestionDao;
 import com.quiz.entities.Question;
 import com.quiz.entities.User;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -22,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional(propagation = Propagation.MANDATORY,rollbackFor = Throwable.class)
 public class QuestionDao extends AbstractDao implements IQuestionDao{
-
+private Map<Integer, Question> questions = new HashMap<>();
     public QuestionDao(SessionFactory sf) {
         super(sf);
     }
@@ -37,5 +41,8 @@ public class QuestionDao extends AbstractDao implements IQuestionDao{
         Question question = (Question) sf.getCurrentSession().get(Question.class, questionId);
         return question;
     }
+    public List<Question> getAll() {
+		return new ArrayList<Question>(questions.values());
+	}
     
 }

@@ -17,18 +17,35 @@
             <table>
                     <td>Question:</td>
                     <td><form:input type="text" path="question" name="question" /> 
-                    <form:errors path="question" cssClass="error" />
+                    <%--<form:errors path="question" cssClass="error" />--%>
                     </td>
                 </tr>
                 <tr>
                     <td>Solution:</td>
                     <td><form:input type="text" path="solution" name="solution" />
-                    <form:errors path="solution" cssClass="error" />
+                    <%--<form:errors path="solution" cssClass="error" />--%>
                     </td>
                 </tr>
             </table>
             <input type="submit"/>
-
-        </form:form>
+         </form:form>
+            <h1>Questions with Answers</h1>
+	<table>
+            <tr>
+                <td>Question</td>
+                <td>Answer</td>
+                <td>Update</td>
+                <td>Delete</td>
+            </tr>
+<%--	<c:forEach var="ques" items="${questions}">
+	<tr>
+     
+		<td>${quest.question}</td>
+		<td>${quest.solution}</td>
+		<td>update</td>
+		<td>Delete</td>
+	</tr>
+	</c:forEach> --%>
+	</table>
     </body>
 </html>

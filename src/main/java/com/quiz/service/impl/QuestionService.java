@@ -9,6 +9,10 @@ package com.quiz.service.impl;
 import com.quiz.dao.IQuestionDao;
 import com.quiz.entities.Question;
 import com.quiz.service.IQuestionService;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.transaction.Transactional;
 
 /**
@@ -18,6 +22,7 @@ import javax.transaction.Transactional;
 @Transactional
 public class QuestionService implements IQuestionService{
     IQuestionDao questionDao;
+    
 
     public QuestionService(IQuestionDao questionDao) {
         this.questionDao = questionDao;
@@ -31,5 +36,9 @@ public class QuestionService implements IQuestionService{
     @Override
     public Question get(int questionId) {
          return questionDao.get(questionId);
-    }   
+    }  
+    @Override
+	public List<Question> getAll() {
+		return questionDao.getAll();
+	}
 }

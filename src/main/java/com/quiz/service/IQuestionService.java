@@ -7,6 +7,7 @@
 package com.quiz.service;
 
 import com.quiz.entities.Question;
+import java.util.List;
 
 /**
  *
@@ -14,5 +15,6 @@ import com.quiz.entities.Question;
  */
 public interface IQuestionService {
  public abstract void add(Question question);
- public abstract Question get(int questionId);   
+ public abstract Question get(int questionId); 
+ public abstract List<Question> getAll();
 }
