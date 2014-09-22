@@ -137,6 +137,7 @@ public class ContestService implements IContestService {
     @Override
     public ScheduleContestResult scheduleContest(ContestInfo contestInfo) {
         if (contestInfo.getContestDate().getTime() < (System.currentTimeMillis())) {
+             System.out.println(ScheduleContestResult.StartDateInvalid);
             return ScheduleContestResult.StartDateInvalid;
         }
         
@@ -288,7 +289,7 @@ public class ContestService implements IContestService {
     
     @Override
     public Contestant getContestantInfo(long contestId) {
-        User user = AuthenticationContext.getCurrentUser();
+     User user=userDao.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
         return contestDao.getContestant(contestId, user.getId());
         
     }
@@ -301,6 +302,7 @@ public class ContestService implements IContestService {
     @Override
     public ScheduleContestResult updateContest(ContestInfo contestInfo) {
         if (contestInfo.getContestDate().getTime() < (System.currentTimeMillis())) {
+           
             return ScheduleContestResult.StartDateInvalid;
         }
         ScheduledContest s = (ScheduledContest) contestDao.getContest(contestInfo.getContestId());
@@ -332,5 +334,7 @@ public class ContestService implements IContestService {
         Contestant t = getContestant(contestId);
         return t.getCompletedLevelTestsIndicator();
     }
+
+ 
     
 }

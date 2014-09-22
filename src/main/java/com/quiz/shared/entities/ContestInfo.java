@@ -26,8 +26,8 @@ public class ContestInfo {
     @NotEmpty
     private String contestName;
     @NotNull
-    @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
-//    @Future
+    @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss a")
+    @Future
     private Date contestDate;
     @NotNull
     @DateTimeFormat(pattern = "hh:mm:ss")

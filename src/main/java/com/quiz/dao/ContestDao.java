@@ -26,7 +26,11 @@ public class ContestDao extends AbstractDao implements IContestDao{
 
 	@Override
 	public List<ScheduledContest> getScheduledContests() {
-            return getQuery("select s from ScheduledContest s").list();
+            List<ScheduledContest> scheduledContests=getQuery("select s from ScheduledContest s").list();
+            for(ScheduledContest scheduledContest:scheduledContests){
+                checkStatus(scheduledContest);
+            }
+            return scheduledContests;
 		
 	}
 
@@ -64,7 +68,9 @@ public class ContestDao extends AbstractDao implements IContestDao{
 
 	@Override
 	public QuizContest getContest(long contestId) {
-		return (QuizContest) sf.getCurrentSession().get(QuizContest.class, contestId);
+            ScheduledContest scheduledContest=(ScheduledContest) sf.getCurrentSession().get(QuizContest.class, contestId);
+            checkStatus(scheduledContest);
+            return scheduledContest;
 	}
 
 	@Override
@@ -111,5 +117,11 @@ public class ContestDao extends AbstractDao implements IContestDao{
 	public ContestState getContestState(long contestId) {
 		return (ContestState) getQuery("select c.contestState from QuizContest c where c.id=?", contestId).uniqueResult();
 	}
+
+    private void checkStatus(ScheduledContest scheduledContest) {
+         if(System.currentTimeMillis()>scheduledContest.getStartTime().getTime()){
+                scheduledContest.setContestState(ContestState.RUNNING);
+            }
+    }
 
 }

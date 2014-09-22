@@ -73,4 +73,7 @@ http://www.springframework.org/schema/tx
     
     <bean id="userDao" class="com.quiz.dao.impl.UserDao" parent="abstractDao">
     </bean>
+    
+    
+
 </beans>

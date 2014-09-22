@@ -8,6 +8,7 @@ package com.quiz.controller;
 import com.quiz.dao.IContestDao;
 import com.quiz.dao.IQuizDao;
 import com.quiz.dao.IUserDao;
+import com.quiz.entities.Contestant;
 import com.quiz.entities.Question;
 import com.quiz.entities.QuizContest;
 import com.quiz.entities.ScheduledContest;
@@ -16,6 +17,7 @@ import com.quiz.entities.Visibility;
 import com.quiz.service.IContestService;
 import com.quiz.service.impl.AuthenticationContext;
 import com.quiz.shared.entities.ContestInfo;
+import com.quiz.shared.entities.ContestState;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -65,7 +67,7 @@ public class ContestController {
     @RequestMapping(value = "/addContest", method = RequestMethod.GET)
     public String addUser(@ModelAttribute("contestInfo") ContestInfo contestInfo, ModelMap model) {
         Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(System.currentTimeMillis() + 10 * 24 * 60 * 60 * 1000);
+        cal.setTimeInMillis(System.currentTimeMillis());
         contestInfo.setContestDate(cal.getTime());
         contestInfo.setContestName("test");
         contestInfo.setOrganizerEmail("puneetkhanal@gmail.com");
@@ -79,10 +81,12 @@ public class ContestController {
     public String addUser(@Valid ContestInfo contestInfo, BindingResult result) {
         String view = "redirect:main";
         if (!result.hasErrors()) {
+            System.out.println(contestInfo.getContestDate());
             System.out.println(" validated inputs of contest: " + contestInfo.getContestName());
             System.out.println(contestInfo.getQuizName());
             contestService.scheduleContest(contestInfo);
         } else {
+            System.out.println(contestInfo.getContestDate());
             view = "/addContest";
         }
         return view;
@@ -91,14 +95,18 @@ public class ContestController {
     @RequestMapping(value = "/detailsClick", method = RequestMethod.POST)
     public String details(int contestId, ModelMap model) {
         model.addAttribute("contest", contestDao.getContest(contestId));
+        Contestant c=contestService.getContestantInfo(contestId);
+        model.addAttribute("joined",c);
         return "contest";
     }
 
     @RequestMapping(value = "/detailsClick", method = RequestMethod.GET)
     public String getdetails(ModelMap model) {
-        QuizContest contest=contestDao.getContest((Integer) model.get("contestId"));
+        Integer contestId=(Integer) model.get("contestId");
+        QuizContest contest=contestDao.getContest(contestId);
         model.addAttribute("contest", contest);
-        System.out.println("no of Contestants"+contest.getContestants().size());
+        Contestant c=contestService.getContestantInfo(contestId);
+        model.addAttribute("joined",c);
         return "contest";
     }
 
