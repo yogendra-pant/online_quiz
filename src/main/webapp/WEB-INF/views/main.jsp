@@ -15,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <jsp:include page="header.jsp" />
-        <a href="registerUser">Register User</a>
+       
         <a href="addContest">Add Quiz Contest</a>
         <a href="addQuiz">Add Quiz</a>
     </head>

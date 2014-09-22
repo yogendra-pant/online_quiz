@@ -12,14 +12,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-
-        <table>
-
-            <c:forEach var="question" items="${questions}">
+<form:form  action="submitQuiz" method="post">
+        <table>            
+            <c:forEach var="quest" items="${questions}">
                 <tr>
-                    <td>Question. ${question.question}</td>
+                    <td>Question. ${quest.question}</td>
+                    <td><input type="text" name="userAnswer" size="100" /></td>
                 </tr>
             </c:forEach>
         </table>
+    <input type="submit"/>
+</form:form>
     </body>
 </html>

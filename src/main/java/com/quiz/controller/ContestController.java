@@ -116,6 +116,7 @@ public class ContestController {
         List<Question> questions = quizDao.getQuiz(quizContest.getQuizId()).getQuestions();
         System.out.println("questions size:" + questions.size());
         model.addAttribute("questions", questions);
+       
         return "quiz";
     }
 

@@ -19,12 +19,11 @@ public class Question extends EntityObject {
 //     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
 //    private long questionId;
-    @NotNull
-    @NotEmpty
     private String question;
-    @NotNull
-    @NotEmpty
     private String solution;
+    private String userAnswer;
+    private String fullPoint;
+    private String scoredPoint;
 
     public Question() {
 
@@ -33,6 +32,29 @@ public class Question extends EntityObject {
     public Question(String question, String solution) {
         this.question = question;
         this.solution = solution;
+    }
+     public String getUserAnswer() {
+        return userAnswer;
+    }
+
+    public void setUserAnswer(String userAnswer) {
+        this.userAnswer = userAnswer;
+    }
+
+    public String getFullPoint() {
+        return fullPoint;
+    }
+
+    public void setFullPoint(String fullPoint) {
+        this.fullPoint = fullPoint;
+    }
+
+    public String getScoredPoint() {
+        return scoredPoint;
+    }
+
+    public void setScoredPoint(String scoredPoint) {
+        this.scoredPoint = scoredPoint;
     }
 
     public String getQuestion() {
