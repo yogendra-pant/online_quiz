@@ -45,7 +45,7 @@ public class ContestController {
 
     @Autowired
     private IUserDao userDao;
-    
+
     @Autowired
     private IQuizDao quizDao;
 
@@ -63,9 +63,9 @@ public class ContestController {
     }
 
     @RequestMapping(value = "/addContest", method = RequestMethod.GET)
-    public String addUser(@ModelAttribute("contestInfo") ContestInfo contestInfo,ModelMap model) {
-       Calendar cal=Calendar.getInstance();
-       cal.setTimeInMillis(System.currentTimeMillis()+10*24*60*60*1000);
+    public String addUser(@ModelAttribute("contestInfo") ContestInfo contestInfo, ModelMap model) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(System.currentTimeMillis() + 10 * 24 * 60 * 60 * 1000);
         contestInfo.setContestDate(cal.getTime());
         contestInfo.setContestName("test");
         contestInfo.setOrganizerEmail("puneetkhanal@gmail.com");
@@ -82,7 +82,7 @@ public class ContestController {
             System.out.println(" validated inputs of contest: " + contestInfo.getContestName());
             System.out.println(contestInfo.getQuizName());
             contestService.scheduleContest(contestInfo);
-        } else {     
+        } else {
             view = "/addContest";
         }
         return view;
@@ -96,7 +96,9 @@ public class ContestController {
 
     @RequestMapping(value = "/detailsClick", method = RequestMethod.GET)
     public String getdetails(ModelMap model) {
-        model.addAttribute("contest", contestDao.getContest((Integer) model.get("contestId")));
+        QuizContest contest=contestDao.getContest((Integer) model.get("contestId"));
+        model.addAttribute("contest", contest);
+        System.out.println("no of Contestants"+contest.getContestants().size());
         return "contest";
     }
 
@@ -108,14 +110,14 @@ public class ContestController {
         redirectAttributes.addFlashAttribute("contestId", contestId);
         return "redirect:/detailsClick";
     }
-    
+
     @RequestMapping(value = "/enter", method = RequestMethod.POST)
-    public String quiz(int contestId,ModelMap model) {
-        QuizContest quizContest=contestDao.getContest(contestId);
-        System.out.println("quiz_id"+quizContest.getQuizId());
-        List<Question> questions=quizDao.getQuiz(quizContest.getQuizId()).getQuestions();
-        System.out.println("questions size:"+questions.size());
-        model.addAttribute("questions",questions );
+    public String quiz(int contestId, ModelMap model) {
+        QuizContest quizContest = contestDao.getContest(contestId);
+        System.out.println("quiz_id" + quizContest.getQuizId());
+        List<Question> questions = quizDao.getQuiz(quizContest.getQuizId()).getQuestions();
+        System.out.println("questions size:" + questions.size());
+        model.addAttribute("questions", questions);
         return "quiz";
     }
 

@@ -41,5 +41,25 @@
             </tr>
 
         </table>
+                        
+                        
+        <table class="myTable">
+            <tr>
+                <td>Username</td>
+                
+
+            </tr>
+            <c:forEach var="contestant" items="${contest.contestants}">
+
+                <tr>
+                    <td>${contestant.user.userName}</td>
+                    
+                    
+
+
+                </tr>
+            </c:forEach>
+
+        </table>
     </body>
 </html>

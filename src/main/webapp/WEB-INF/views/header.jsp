@@ -18,8 +18,8 @@
     <body>
 
         <a href="main">Home</a>
-        <a href="j_spring_security_logout">logout</a>
-        <h1>Quiz Contest Hosting</h1>
+        <a href="j_spring_security_logout">Logout</a>
+        <h1>Quiz Contest Hosting Application</h1>
 
     </body>
 </html>
