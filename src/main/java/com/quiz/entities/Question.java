@@ -18,9 +18,9 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author puneetkhanal
  */
 @Entity
-public class Question extends EntityObject {
+public class Question{
 
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long questionId;
     @NotNull
@@ -41,16 +41,6 @@ public class Question extends EntityObject {
     public Question(String question, String solution) {
         this.question = question;
         this.solution = solution;
-    }
-    
-  
-
-    public long getQuestionId() {
-        return questionId;
-    }
-
-    public void setQuestioId(long questionId) {
-        this.questionId = questionId;
     }
 
     public String getQuestion() {

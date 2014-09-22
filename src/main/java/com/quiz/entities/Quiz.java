@@ -5,14 +5,19 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
-public class Quiz extends EntityObject{
+public class Quiz {
 
-    private static final long serialVersionUID = 1L;
     
+    @Id
+    @GeneratedValue
+    private long id;
     private String name;
 
     private String displayName;
@@ -26,7 +31,8 @@ public class Quiz extends EntityObject{
     private String question;
     private String solution;
     
-    private List<Question> questions=new ArrayList<Question>();
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<Question> questions=new ArrayList<>();
     
     public Quiz(){
         
@@ -82,7 +88,7 @@ public class Quiz extends EntityObject{
 
   
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    
     public List<Question> getQuestions() {
         return questions;
     }
@@ -91,7 +97,7 @@ public class Quiz extends EntityObject{
         this.questions = questions;
     }
     
-    @Transient
+  
     public int getNrOfQuestions(){
         return questions.size();
     }
@@ -106,7 +112,7 @@ public class Quiz extends EntityObject{
 
     @Override
     public String toString() {
-        return getId()+":"+displayName;
+        return id+":"+displayName;
     }
 
 }

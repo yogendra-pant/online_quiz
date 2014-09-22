@@ -17,7 +17,7 @@ table.myTable td, table.myTable th { border:1px solid black;padding:5px; }
     </head>
     <body>
        
-
+<a href="j_spring_security_logout">logout</a>
         <h1>Quiz Contest Hosting</h1>
         <a href="registerUser">Register User</a>
         <a href="addContest">Add Quiz Contest</a>

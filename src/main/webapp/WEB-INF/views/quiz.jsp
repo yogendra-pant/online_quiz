@@ -13,6 +13,8 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <a href="main">Home</a>
+        <a href="j_spring_security_logout">logout</a>
         <c:forEach var="question" items="${questions}">
                 
                 <tr>

@@ -9,6 +9,7 @@ import com.quiz.dao.IContestDao;
 import com.quiz.dao.IQuizDao;
 import com.quiz.dao.IUserDao;
 import com.quiz.entities.Question;
+import com.quiz.entities.QuizContest;
 import com.quiz.entities.ScheduledContest;
 import com.quiz.entities.User;
 import com.quiz.entities.Visibility;
@@ -107,7 +108,9 @@ public class ContestController {
     
     @RequestMapping(value = "/enter", method = RequestMethod.POST)
     public String quiz(int contestId,ModelMap model) {
-        List<Question> questions=quizDao.getQuiz(contestDao.getContest(contestId).getQuizId()).getQuestions();
+        QuizContest quizContest=contestDao.getContest(contestId);
+        System.out.println("quiz_id"+quizContest.getQuizId());
+        List<Question> questions=quizDao.getQuiz(quizContest.getQuizId()).getQuestions();
         System.out.println("questions size:"+questions.size());
         model.addAttribute("questions",questions );
         return "quiz";

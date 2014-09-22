@@ -13,6 +13,8 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <a href="main">Home</a>
+        <a href="j_spring_security_logout">logout</a>
         <form:form commandName="contestInfo" action="addContest" method="post">
             <%--<form:errors path="*" element="div"/>--%>
             <table>

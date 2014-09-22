@@ -30,13 +30,7 @@ public abstract class QuizContest extends EntityObject {
 
     }
 
-    public int getQuizId() {
-        return quizId;
-    }
-
-    public void setQuizId(int quizId) {
-        this.quizId = quizId;
-    }
+    
 
     
     @OneToOne(cascade = CascadeType.ALL)
@@ -48,7 +42,13 @@ public abstract class QuizContest extends EntityObject {
         this.quiz = quiz;
     }
 
-   
+   public int getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(int quizId) {
+        this.quizId = quizId;
+    }
 
     public void setName(String name) {
         this.name = name;

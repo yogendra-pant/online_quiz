@@ -6,8 +6,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-
-
+        <a href="main">Home</a>
+<a href="j_spring_security_logout">logout</a>
         <form:form commandName="quiz" action="addQuestion" method="post">
             <h1>Enter Quiz Info</h1>
             <table >
