@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-@Transactional(propagation = Propagation.MANDATORY,rollbackFor = Throwable.class)
+@Transactional(propagation = Propagation.REQUIRES_NEW,rollbackFor = Throwable.class)
 public class QuizDao extends AbstractDao implements IQuizDao {
 
     public QuizDao(){
