@@ -50,5 +50,34 @@
 //////		contestApi.selectLevel(1, 1);
 ////        contestApi.submitResults(results, 1);
 ////    }
+//    private IContestService contestApi;
+//
+//    @Before
+//    public void setup() throws IOException {
+////        IQuizDao gameDao = new QuizDao();
+////        IContestDao contestDao = new MockContestDao();
+////        QuizContest contest = new TrainingContest();
+////        contest.setId(1);
+////        contestDao.storeContest(contest);
+////        contestApi = new ContestService(contestDao, gameDao,use);
+////        User user = new User();
+////        user.setUserName("testuser");
+////
+////        AuthenticationContext.user=user;
+//    }
+//
+//    @Test
+//    public void joinContest() {
+//        System.out.println(AuthenticationContext.getCurrentUser());
+//        Assert.assertEquals(Result.Success, contestApi.joinContest(1));
+//    }
+//
+//    @Test
+//    public void submitResults() {
+//        contestApi.joinContest(1);
+//        Map<String, String> results = new HashMap<String, String>();
+////		contestApi.selectLevel(1, 1);
+//        contestApi.submitResults(results, 1);
+//    }
 //
 //}

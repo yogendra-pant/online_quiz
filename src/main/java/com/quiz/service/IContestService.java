@@ -3,6 +3,7 @@ package com.quiz.service;
 
 
 import com.quiz.entities.Contestant;
+import com.quiz.entities.ScheduledContest;
 import com.quiz.shared.entities.ContestInfo;
 import com.quiz.shared.entities.LevelInfo;
 import com.quiz.shared.entities.LevelTime;
@@ -46,5 +47,6 @@ public interface IContestService {
 	int getNumberOfLevels(long contestId);
 
 	String getContestantCompletedLevelTestsStatus(long contestId);
+        
 
 }
