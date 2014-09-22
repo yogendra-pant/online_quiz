@@ -4,9 +4,9 @@ import com.quiz.dao.AbstractDao;
 import com.quiz.dao.IQuizDao;
 import com.quiz.entities.Quiz;
 import com.quiz.entities.Visibility;
-
 import java.util.List;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +30,10 @@ public class QuizDao extends AbstractDao implements IQuizDao {
     @Override
     public void storeQuiz(Quiz quiz) {
         try{
+             
        sf.getCurrentSession().save(quiz);
+      sf.getCurrentSession().flush();
+      
         }catch(Exception e){
             e.printStackTrace();
         }

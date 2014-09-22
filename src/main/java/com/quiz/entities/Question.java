@@ -6,10 +6,6 @@
 package com.quiz.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -18,11 +14,11 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author puneetkhanal
  */
 @Entity
-public class Question{
+public class Question extends EntityObject {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long questionId;
+//     @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private long questionId;
     @NotNull
     @NotEmpty
     private String question;
@@ -30,13 +26,9 @@ public class Question{
     @NotEmpty
     private String solution;
 
-    
-
     public Question() {
 
     }
-
-    
 
     public Question(String question, String solution) {
         this.question = question;

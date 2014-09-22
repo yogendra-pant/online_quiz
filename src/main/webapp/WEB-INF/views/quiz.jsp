@@ -1,28 +1,25 @@
-<%-- 
-    Document   : addContest
-    Created on : Sep 19, 2014, 10:43:10 PM
-    Author     : Yogendra
---%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!DOCTYPE html>
 <html>
     <head>
+        <jsp:include page="header.jsp" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="main">Home</a>
-        <a href="j_spring_security_logout">logout</a>
-        <c:forEach var="question" items="${questions}">
-                
+
+        <table>
+
+            <c:forEach var="question" items="${questions}">
                 <tr>
-                    <td>${question.questions}</td>
-                
-                    
-                    
-            </tr>
-        </c:forEach>
+                    <td>Question. ${question.question}</td>
+                </tr>
+            </c:forEach>
+        </table>
     </body>
 </html>

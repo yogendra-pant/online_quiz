@@ -19,16 +19,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
 
-    private static final SessionFactory sessionFactory;
-    private static final ServiceRegistry serviceRegistry;
 
-    static {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
-                configuration.getProperties()).build();
-        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-    }
 
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -36,13 +27,14 @@ public class App {
         Transaction tx = null;
         Session session = null;
 
-        try {
-            session = sessionFactory.openSession();
-            tx = session.beginTransaction();
+       
+            
+          
 
             Quiz quiz = new Quiz();
             quiz.setDisplayName("abc");
             quiz.setDescription("abc");
+          
             Question question1 = new Question("question1", "solution1");
             Question question2 = new Question("question2", "solution2");
             Question question3 = new Question("question3", "solution3");
@@ -50,16 +42,7 @@ public class App {
             quiz.getQuestions().add(question2);
             quiz.getQuestions().add(question3);
             quizDao.storeQuiz(quiz);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) {
-                System.err.println("Rolling back: " + e.getMessage());
-                tx.rollback();
-            }
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
+         
+       
     }
 }

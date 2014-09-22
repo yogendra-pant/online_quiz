@@ -196,8 +196,12 @@ public class QuizService implements IQuizService {
     public ContestState getContestState(long contestId) {
         return contestDao.getContestState(contestId);
     }     
+    
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void storeQuiz(Quiz quiz){
         gameDao.storeQuiz(quiz);
+        
     }
 
 }

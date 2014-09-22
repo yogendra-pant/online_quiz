@@ -26,16 +26,16 @@ public class QuizDaoTest extends QuizTestCase {
 
     @Test
     public void availableGames() {
-        Quiz quiz = new Quiz();
-        quiz.setCreated(null);
-        quiz.setDescription("test quiz");
-        quiz.setDisplayName("test");
-        quiz.setCreated(new Date());
-        
-        List<Question> questions=new ArrayList<Question>();
-        questions.add(new Question("What is your name?","Puneet Khanal"));
-        quiz.setQuestions(questions);
-        quizDao.storeQuiz(quiz);
+//        Quiz quiz = new Quiz();
+////        quiz.setCreated(null);
+//        quiz.setDescription("test quiz");
+//        quiz.setDisplayName("test");
+////        quiz.setCreated(new Date());
+//        
+//        List<Question> questions=new ArrayList<Question>();
+//        questions.add(new Question("What is your name?","Puneet Khanal"));
+//        quiz.setQuestions(questions);
+//        quizDao.storeQuiz(quiz);
 //        System.out.println(quiz.getId());
 //        Quiz quiz1 = quizDao.getQuiz(1);
 //        Assert.assertNotNull(quiz1);
