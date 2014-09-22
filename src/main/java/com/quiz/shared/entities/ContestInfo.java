@@ -5,6 +5,7 @@
  */
 package com.quiz.shared.entities;
 
+import com.quiz.entities.Quiz;
 import com.quiz.shared.entities.ContestState;
 import java.util.Date;
 import javax.validation.constraints.Future;
@@ -26,7 +27,7 @@ public class ContestInfo {
     private String contestName;
     @NotNull
     @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
-    @Future
+//    @Future
     private Date contestDate;
     @NotNull
     @DateTimeFormat(pattern = "hh:mm:ss")
@@ -38,6 +39,7 @@ public class ContestInfo {
     @NotNull
     @NotEmpty
     private String organizerName;
+    private String quizName;
 
     private ContestState contestState;
 
@@ -53,6 +55,17 @@ public class ContestInfo {
         this.organizerName = organizerName;
     }
 
+    public String getQuizName() {
+        return quizName;
+    }
+
+    public void setQuizName(String quizName) {
+        this.quizName = quizName;
+    }
+
+   
+
+   
     public ContestState getContestState() {
         return contestState;
     }

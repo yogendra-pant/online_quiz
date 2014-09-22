@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -29,6 +30,8 @@ public class Question extends EntityObject {
     @NotEmpty
     private String solution;
 
+    
+
     public Question() {
 
     }
@@ -39,6 +42,8 @@ public class Question extends EntityObject {
         this.question = question;
         this.solution = solution;
     }
+    
+  
 
     public long getQuestionId() {
         return questionId;

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quiz.controller;
 
 import com.quiz.entities.Question;
@@ -13,53 +12,51 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+
 
 /**
  *
  * @author Yogendra
  */
 @Controller
+@SessionAttributes(value={"quiz"})
 public class QuizController {
+
     @Resource
     IQuizService quizService;
-    
-     @RequestMapping(value = "/addQuiz", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/addQuiz", method = RequestMethod.GET)
     public String addQuestionToQuiz(ModelMap model) {
-//        if(!model.containsAttribute("quiz")){
-//            model.put("quiz", new Quiz());
-//            model.put("question", new Question());
-//        }else{
-        
-            Quiz quiz=(Quiz) model.get("quiz");
-            if(quiz!=null){
-            for(Question question:quiz.getQuestions()){
-                System.out.println(question.getQuestion() );
-            }
-            System.out.println(quiz.getName());
-           
+        Quiz quiz = (Quiz) model.get("quiz");
+        if (quiz != null) {
             model.put("question", new Question());
             model.put("questions", quiz.getQuestions());
-            }else{
-//                model.put("quiz", new Quiz());
+        } else {
+            model.put("quiz", new Quiz());
             model.put("question", new Question());
-            }
-//        }
-    return "addQuiz";
+        }
+
+        return "addQuiz";
     }
+
     @RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
-    public String addQuiz(Quiz quiz,Question question,BindingResult result,RedirectAttributes redirectAttributes) {   
-            quiz.getQuestions().add(question);
-            redirectAttributes.addFlashAttribute(quiz);
-            System.out.println("quiz persisted!");
-            return "redirect:/addQuiz";
+    public String addQuiz(Quiz quiz, BindingResult result) {
+        System.out.println(quiz.getDisplayName());
+        quiz.getQuestions().add(new Question(quiz.getQuestion(), quiz.getSolution()));
+        return "redirect:/addQuiz";
     }
     
-    
-    
-    
-    
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String saveQuiz(Quiz quiz,SessionStatus sessionStatus) {
+        
+        quizService.storeQuiz(quiz);
+        sessionStatus.setComplete();
+        return "main";
+    }
+
 }

@@ -1,10 +1,13 @@
 package com.quiz.entities;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -17,6 +20,8 @@ public abstract class QuizContest extends EntityObject {
 
     private String gameName;
 
+    private int quizId;
+    
     private Quiz quiz;
 
     protected List<Contestant> contestants;
@@ -25,6 +30,16 @@ public abstract class QuizContest extends EntityObject {
 
     }
 
+    public int getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(int quizId) {
+        this.quizId = quizId;
+    }
+
+    
+    @OneToOne(cascade = CascadeType.ALL)
     public Quiz getQuiz() {
         return quiz;
     }

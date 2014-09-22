@@ -24,7 +24,7 @@ public class QuizDao extends AbstractDao implements IQuizDao {
 
     @Override
     public List<Quiz> getAvailableQuiz(Visibility visibility) {
-        return getQuery("select q from Quiz q where q.visibility='public'").list();
+        return getQuery("select q from Quiz q").list();
     }
 
     @Override

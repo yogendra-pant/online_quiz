@@ -33,54 +33,52 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public class ContestService implements IContestService {
-
+    
     private final IContestDao contestDao;
     private final IQuizDao quizDao;
-
+    
     public ContestService(IContestDao contestDao, IQuizDao quizDao) {
         this.contestDao = contestDao;
         this.quizDao = quizDao;
     }
-
+    
     @Override
     public double getDuration(long contestId) {
         Contestant contestant = getContestant(contestId);
-
+        
         if (contestant.isPaused()) {
             return contestant.getDuration() / 1000;
         }
-
+        
         if (contestant.isFinished()) {
             return contestant.getDuration() / 1000;
         }
-
+        
         long diff = contestant.getDuration() + System.currentTimeMillis() - contestant.getStartTime();
-
+        
         return diff / 1000;
     }
-
-
+    
     @Override
     public LevelInfo getLevelInfo(long contestId) {
         QuizContest contest = contestDao.getContest(contestId);
         if (contest == null) {
 //			logger.error("Invalid Contest {}", contestId);
         }
-
+        
         Contestant contestant = getContestant(contestId);
         if (contestant == null) {
 //			logger.error("Invalid contestant for contest {}, for user {}", contestId, AuthenticationContext.getCurrentUser().getId());
         }
         Quiz game = quizDao.getQuiz(contest.getQuiz().getId());
-       
-
+        
         if (game == null) {
 //			logger.error("No game found with name {}", contestId, contest.getGameName());
         }
         return new LevelInfo(game.getNrOfQuestions(), contestant.getCurrentLevel(), contestant.getSelectedLevel(),
                 contestant.isFinished());
     }
-
+    
     @Override
     public List<LevelTime> getLevelTimes(long contestId) {
         Contestant contesTant = getContestant(contestId);
@@ -94,14 +92,13 @@ public class ContestService implements IContestService {
         }
         return levelTimes;
     }
-
-
+    
     @Override
     public boolean isRegistered(long contestId) {
         Contestant c = getContestant(contestId);
         return c != null;
     }
-
+    
     @Override
     public Result joinContest(long contestId) {
         QuizContest c = contestDao.getContest(contestId);
@@ -111,60 +108,66 @@ public class ContestService implements IContestService {
         if (!isRegistered(contestId)) {
             Contestant ct = new Contestant();
             ct.setContest(c);
-			ct.setUser((User) AuthenticationContext.getCurrentUser());
+            ct.setUser((User) AuthenticationContext.getCurrentUser());
             if (ct.getUser() == null) {
                 return Result.Failure;
             }
             if (c instanceof ScheduledContest) {
                 ScheduledContest contest = (ScheduledContest) c;
                 ct.setStartTime(contest.getStartTime().getTime());
-
+                
             }
             contestDao.storeContestant(ct);
             c.getContestants().add(ct);
             contestDao.storeContest(c);
             return Result.Success;
         }
-
+        
         return Result.Success;
     }
-
+    
     @Override
     public ScheduleContestResult scheduleContest(ContestInfo contestInfo) {
         if (contestInfo.getContestDate().getTime() < (System.currentTimeMillis())) {
             return ScheduleContestResult.StartDateInvalid;
         }
-
+        
         ScheduledContest s = new ScheduledContest();
 //        s.setGameName(contestInfo.getGameName());
         s.setName(contestInfo.getContestName());
-
+        
         long date = contestInfo.getContestDate().getTime();
         s.setStartTime(new Date(date));
-
+        System.out.println("contest service:" + contestInfo.getQuizName());
+        String[] args = contestInfo.getQuizName().split(":");
+        System.out.println(args.length);
+        Long id = Long.parseLong(args[0]);
+        System.out.println(id);
+        s.setQuiz(quizDao.getQuiz(id));
+        s.setQuizId(id.intValue());
         s.setDurationHours(contestInfo.getContestDate().getHours());
         s.setDurationMinutes(contestInfo.getContestDate().getMinutes());
         s.setContestState(ContestState.OPEN_FOR_REGISTRATION);
         s.setOrganizer(contestInfo.getOrganizerName());
         s.setOrganizerEmail(contestInfo.getOrganizerEmail());
-
+        
         contestDao.storeContest(s);
-
+        
         return ScheduleContestResult.Success;
     }
-
+    
     @Override
     public boolean deleteContest(ContestInfo contestInfo) {
         QuizContest c = contestDao.getContest(contestInfo.getContestId());
         contestDao.deleteContest(c);
         return true;
     }
-
+    
     private void logContestInfo(String text, Contestant t, Object... args) {
 //		contestLogger
 //				.info("{}: User {} " + text, ArrayUtils.addAll(new Object[] { t.getContest().getName(), t.getUser().getName() }, args));
     }
-
+    
     @Override
     public Map<String, String> submitResults(Map<String, String> results, long contestId) {
 //        boolean invalidTest = false;
@@ -253,77 +256,74 @@ public class ContestService implements IContestService {
 //        contestDao.storeContestant(t);
         return null;
     }
-
+    
     private String trim(String string) {
         if (string == null) {
             return null;
         }
         return string.trim();
     }
-
+    
     private Contestant getContestant(long contestId) {
         User user = AuthenticationContext.getCurrentUser();
         if (user == null) {
             return null;
         }
         return contestDao.getContestant(contestId, user.getId());
-
+        
     }
-
+    
     @Override
     public boolean isGameFinished(long contestId) {
         Contestant contestant = getContestant(contestId);
         return contestant.isFinished();
     }
-
+    
     @Override
     public Contestant getContestantInfo(long contestId) {
         User user = AuthenticationContext.getCurrentUser();
         return contestDao.getContestant(contestId, user.getId());
-
+        
     }
-
+    
     @Override
     public List<Contestant> getContestants(long contestId) {
         return contestDao.getContestants(contestId);
     }
-
-
+    
     @Override
     public ScheduleContestResult updateContest(ContestInfo contestInfo) {
         if (contestInfo.getContestDate().getTime() < (System.currentTimeMillis())) {
             return ScheduleContestResult.StartDateInvalid;
         }
         ScheduledContest s = (ScheduledContest) contestDao.getContest(contestInfo.getContestId());
-
+        
         s.setStartTime(contestInfo.getContestDate());
 //        s.setDurationHours(contestInfo.getDurationHours());
 //        s.setDurationMinutes(contestInfo.getDurationMinutes());
 
         contestDao.storeContest(s);
-
+        
         return ScheduleContestResult.Success;
     }
-
+    
     @Override
     public UserTime getUserTime(long contestId) {
         Contestant contestant = getContestant(contestId);
         return new UserTime(getDuration(contestId), contestant.isPaused());
     }
-
- 
-
+    
     @Override
     public int getNumberOfLevels(long contestId) {
         QuizContest contest = contestDao.getContest(contestId);
         Quiz game = quizDao.getQuiz(contest.getQuiz().getId());
         return game.getNrOfQuestions();
     }
-
+    
     @Override
     public String getContestantCompletedLevelTestsStatus(long contestId) {
         Contestant t = getContestant(contestId);
         return t.getCompletedLevelTestsIndicator();
     }
-
+    
 }

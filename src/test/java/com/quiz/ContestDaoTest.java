@@ -4,10 +4,15 @@ package com.quiz;
 
 import com.quiz.entities.Contestant;
 import com.quiz.entities.LevelTimer;
+import com.quiz.entities.Question;
+import com.quiz.entities.Quiz;
+import com.quiz.entities.QuizContest;
 import com.quiz.entities.ScheduledContest;
 import com.quiz.entities.TrainingContest;
 import com.quiz.entities.User;
 import com.quiz.shared.entities.ContestState;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
@@ -53,14 +58,28 @@ public class ContestDaoTest extends QuizTestCase {
 
     @Test
     public void getScheduledContests() {
-        ScheduledContest c = new ScheduledContest();
-        c.setName("ea");
+//        ScheduledContest c = new ScheduledContest();
+//        c.setName("ea");
+//Quiz quiz = new Quiz();
+//        quiz.setCreated(null);
+//        quiz.setDescription("test quiz");
+//        quiz.setDisplayName("test");
+//        quiz.setCreated(new Date());
+//        
+//        List<Question> questions=new ArrayList<Question>();
+//        questions.add(new Question("What is your name?","Puneet Khanal"));
+//        quiz.setQuestions(questions);
+//        
+//        c.setQuiz(quiz);
+//        contestDao.storeContest(c);
 
-        contestDao.storeContest(c);
+        QuizContest contests = contestDao.getContest(1);
+        System.out.println(contests.getName());
+        System.out.println(contests.getQuiz().getQuestions().size());
+       System.out.println(contestDao.getScheduledContests().get(0).getQuiz().getQuestions().size());
+//        Assert.assertEquals(1, contests.size());
 
-        List<ScheduledContest> contests = contestDao.getScheduledContests();
-        Assert.assertEquals(1, contests.size());
-
+//        Assert.assertEquals(1, contests.get(0).getQuiz().getQuestions().size());
     }
 
     @Test

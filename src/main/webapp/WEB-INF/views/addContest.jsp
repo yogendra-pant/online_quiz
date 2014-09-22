@@ -47,6 +47,12 @@
                     <form:errors path="organizerEmail" cssClass="error" />
                     </td>
                 </tr>
+                <tr>
+                    <td>Select Quiz:</td>
+                    <td>
+                        <form:select path="quizName" items="${quizList}" />
+                    </td>
+                </tr>
             </table>
             <input type="submit"/>
 

@@ -15,7 +15,7 @@ public class Quiz extends EntityObject{
     
     private String name;
 
-    private String diplayName;
+    private String displayName;
 
     private String description;
 
@@ -23,10 +23,29 @@ public class Quiz extends EntityObject{
     
     private Visibility visibility;
     
+    private String question;
+    private String solution;
+    
     private List<Question> questions=new ArrayList<Question>();
     
     public Quiz(){
         
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getSolution() {
+        return solution;
+    }
+
+    public void setSolution(String solution) {
+        this.solution = solution;
     }
 
     public String getName() {
@@ -37,12 +56,12 @@ public class Quiz extends EntityObject{
         this.name = name;
     }
 
-    public String getDiplayName() {
-        return diplayName;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setDiplayName(String diplayName) {
-        this.diplayName = diplayName;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public String getDescription() {
@@ -83,6 +102,11 @@ public class Quiz extends EntityObject{
 
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
+    }
+
+    @Override
+    public String toString() {
+        return getId()+":"+displayName;
     }
 
 }

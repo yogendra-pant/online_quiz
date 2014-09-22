@@ -29,7 +29,7 @@ public class QuizDaoTest extends QuizTestCase {
         Quiz quiz = new Quiz();
         quiz.setCreated(null);
         quiz.setDescription("test quiz");
-        quiz.setDiplayName("test");
+        quiz.setDisplayName("test");
         quiz.setCreated(new Date());
         
         List<Question> questions=new ArrayList<Question>();
@@ -39,6 +39,7 @@ public class QuizDaoTest extends QuizTestCase {
         System.out.println(quiz.getId());
         Quiz quiz1 = quizDao.getQuiz(quiz.getId());
         Assert.assertNotNull(quiz1);
+        Assert.assertTrue(quiz1.getQuestions().size()>0);
     }
 
 }
