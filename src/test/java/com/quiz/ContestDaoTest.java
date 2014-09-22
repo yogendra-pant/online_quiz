@@ -73,10 +73,10 @@ public class ContestDaoTest extends QuizTestCase {
 //        c.setQuiz(quiz);
 //        contestDao.storeContest(c);
 
-        QuizContest contests = contestDao.getContest(1);
-        System.out.println(contests.getName());
-        System.out.println(contests.getQuiz().getQuestions().size());
-       System.out.println(contestDao.getScheduledContests().get(0).getQuiz().getQuestions().size());
+//        QuizContest contests = contestDao.getContest(1);
+//        System.out.println(contests.getName());
+//        System.out.println(contests.getQuiz().getQuestions().size());
+//       System.out.println(contestDao.getScheduledContests().get(0).getQuiz().getQuestions().size());
 //        Assert.assertEquals(1, contests.size());
 
 //        Assert.assertEquals(1, contests.get(0).getQuiz().getQuestions().size());
