@@ -20,15 +20,22 @@
 
         <table class="myTable">
             <tr>
-                <td>Contest Name:</td>
-                <td>Organizer Email:</td>
-                <td>Action:</td>
+                <td>Contest Name</td>
+                <td>Organizer Email</td>
+                <td>Contest state</td>
+                <td>Start time</td>
+                <td>Duration</td>
+                <td>Action</td>
+                
             </tr>
 
 
             <tr>
                 <td>${contest.name}</td>
                 <td>${contest.organizerEmail}</td>
+                <td>${contest.contestState}</td>
+                <td>${contest.startTime}</td>
+                 <td><c:out value="${contest.duration.getHours()}:${contest.duration.getHours()}"/></td>
                 <td>
                     <form action="join?contestId=${contest.id}" method="post">
                         <button type="submit">Join</button>

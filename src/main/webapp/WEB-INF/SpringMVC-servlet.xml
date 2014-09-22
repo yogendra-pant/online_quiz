@@ -64,6 +64,7 @@ http://www.springframework.org/schema/tx
     <bean id="contestService" class="com.quiz.service.impl.ContestService">
         <constructor-arg index="0" ref="contestDao" />
         <constructor-arg index="1" ref="quizDao" />  
+        <constructor-arg index="2" ref="userDao" />  
     </bean>
     
      <bean id="abstractDao" class="com.quiz.dao.AbstractDao" abstract="true">

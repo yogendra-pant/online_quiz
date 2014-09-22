@@ -15,10 +15,8 @@ public class ScheduledContest extends QuizContest {
 	private static final long serialVersionUID = 1L;
 
 	private Date startTime;
-
-	private int durationHours;
-
-	private int durationMinutes;
+        
+        private Date duration;
 
 	private ContestState contestState;
 
@@ -32,22 +30,6 @@ public class ScheduledContest extends QuizContest {
 
 	public Date getStartTime() {
 		return startTime;
-	}
-
-	public void setDurationHours(int durationHours) {
-		this.durationHours = durationHours;
-	}
-
-	public int getDurationHours() {
-		return durationHours;
-	}
-
-	public void setDurationMinutes(int durationMinutes) {
-		this.durationMinutes = durationMinutes;
-	}
-
-	public int getDurationMinutes() {
-		return durationMinutes;
 	}
 
 	public void setContestState(ContestState contestState) {
@@ -73,6 +55,14 @@ public class ScheduledContest extends QuizContest {
 	public String getOrganizer() {
 		return organizer;
 	}
+
+    public Date getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Date duration) {
+        this.duration = duration;
+    }
 
 	@Override
 	@OneToMany(mappedBy = "contest")

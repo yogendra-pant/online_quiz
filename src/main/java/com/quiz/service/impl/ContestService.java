@@ -2,6 +2,7 @@ package com.quiz.service.impl;
 
 import com.quiz.dao.IContestDao;
 import com.quiz.dao.IQuizDao;
+import com.quiz.dao.IUserDao;
 import com.quiz.entities.Contestant;
 import com.quiz.entities.LevelTimer;
 import com.quiz.entities.Quiz;
@@ -28,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,10 +38,12 @@ public class ContestService implements IContestService {
     
     private final IContestDao contestDao;
     private final IQuizDao quizDao;
+    private final IUserDao userDao;
     
-    public ContestService(IContestDao contestDao, IQuizDao quizDao) {
+    public ContestService(IContestDao contestDao, IQuizDao quizDao,IUserDao userDao) {
         this.contestDao = contestDao;
         this.quizDao = quizDao;
+        this.userDao=userDao;
     }
     
     @Override
@@ -101,6 +105,8 @@ public class ContestService implements IContestService {
     
     @Override
     public Result joinContest(long contestId) {
+        User user=userDao.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        AuthenticationContext.user=user;
         QuizContest c = contestDao.getContest(contestId);
         if (c == null) {
             return Result.Failure;
@@ -109,6 +115,7 @@ public class ContestService implements IContestService {
             Contestant ct = new Contestant();
             ct.setContest(c);
             ct.setUser((User) AuthenticationContext.getCurrentUser());
+            
             if (ct.getUser() == null) {
                 return Result.Failure;
             }
@@ -120,6 +127,7 @@ public class ContestService implements IContestService {
             contestDao.storeContestant(ct);
             c.getContestants().add(ct);
             contestDao.storeContest(c);
+            System.out.println("success joing contest by username "+ct.getUser().getUserName());
             return Result.Success;
         }
         
@@ -145,8 +153,7 @@ public class ContestService implements IContestService {
         System.out.println(id);
         s.setQuiz(quizDao.getQuiz(id));
         s.setQuizId(id.intValue());
-        s.setDurationHours(contestInfo.getContestDate().getHours());
-        s.setDurationMinutes(contestInfo.getContestDate().getMinutes());
+        s.setDuration(contestInfo.getContestDuration());
         s.setContestState(ContestState.OPEN_FOR_REGISTRATION);
         s.setOrganizer(contestInfo.getOrganizerName());
         s.setOrganizerEmail(contestInfo.getOrganizerEmail());

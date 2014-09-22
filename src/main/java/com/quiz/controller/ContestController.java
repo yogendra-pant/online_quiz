@@ -104,8 +104,6 @@ public class ContestController {
 
     @RequestMapping(value = "/join", method = RequestMethod.POST)
     public String getdetails(int contestId, RedirectAttributes redirectAttributes) {
-        User user = userDao.get(3);
-        AuthenticationContext.user = user;
         contestService.joinContest(contestId);
         redirectAttributes.addFlashAttribute("contestId", contestId);
         return "redirect:/detailsClick";

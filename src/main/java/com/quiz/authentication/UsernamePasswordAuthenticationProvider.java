@@ -2,6 +2,7 @@ package com.quiz.authentication;
 
 import com.quiz.dao.IUserDao;
 import com.quiz.entities.User;
+import com.quiz.service.impl.AuthenticationContext;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -39,6 +40,7 @@ public class UsernamePasswordAuthenticationProvider implements AuthenticationPro
             List<GrantedAuthority> grantedAuths=new ArrayList<>();
             grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
             Authentication auth=new UsernamePasswordAuthenticationToken(user.getUserName(),user.getPassword(), grantedAuths);
+            
             return auth;
         }
         return null;

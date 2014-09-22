@@ -25,16 +25,16 @@ public class ContestServiceTest {
 
     @Before
     public void setup() throws IOException {
-        IQuizDao gameDao = new QuizDao();
-        IContestDao contestDao = new MockContestDao();
-        QuizContest contest = new TrainingContest();
-        contest.setId(1);
-        contestDao.storeContest(contest);
-        contestApi = new ContestService(contestDao, gameDao);
-        User user = new User();
-        user.setUserName("testuser");
-
-        AuthenticationContext.user=user;
+//        IQuizDao gameDao = new QuizDao();
+//        IContestDao contestDao = new MockContestDao();
+//        QuizContest contest = new TrainingContest();
+//        contest.setId(1);
+//        contestDao.storeContest(contest);
+//        contestApi = new ContestService(contestDao, gameDao,use);
+//        User user = new User();
+//        user.setUserName("testuser");
+//
+//        AuthenticationContext.user=user;
     }
 
     @Test

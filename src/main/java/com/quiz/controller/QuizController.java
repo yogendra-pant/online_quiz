@@ -53,18 +53,8 @@ public class QuizController {
     
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveQuiz(Quiz quiz,SessionStatus sessionStatus) {
-//        quiz = new Quiz();
-//            quiz.setDisplayName("abc");
-//            quiz.setDescription("abc");
-//            Question question1 = new Question("question1", "solution1");
-//            Question question2 = new Question("question2", "solution2");
-//            Question question3 = new Question("question3", "solution3");
-//            quiz.getQuestions().add(question1);
-//            quiz.getQuestions().add(question2);
-//            quiz.getQuestions().add(question3);
-           
         quizService.storeQuiz(quiz);
-//        sessionStatus.setComplete();
+        sessionStatus.setComplete();
         return "main";
     }
 

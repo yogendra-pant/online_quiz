@@ -27,10 +27,10 @@ public class ContestStateService implements IContestStateService {
 
 		for (ScheduledContest contest : openContests) {
 
-			System.out.println(contest.getDurationHours());
-			System.out.println(contest.getDurationMinutes());
+			System.out.println(contest.getDuration().getHours());
+			System.out.println(contest.getDuration().getMinutes());
 
-			long endTime = contest.getStartTime().getTime() + ((contest.getDurationHours() * 60 + contest.getDurationMinutes()) * 60000);
+			long endTime = contest.getStartTime().getTime() + ((contest.getDuration().getHours() * 60 + contest.getDuration().getMinutes()) * 60000);
 			long startTime = contest.getStartTime().getTime();
 			long currentTime = now.getTime();
 
@@ -60,7 +60,7 @@ public class ContestStateService implements IContestStateService {
 		List<ScheduledContest> runningContest = contestDao.getScheduledContestsByState(ContestState.RUNNING);
 
 		for (ScheduledContest contest : runningContest) {
-			long endTime = contest.getStartTime().getTime() + ((contest.getDurationHours() * 60 + contest.getDurationMinutes()) * 60000);
+			long endTime = contest.getStartTime().getTime() + ((contest.getDuration().getHours() * 60 + contest.getDuration().getMinutes()) * 60000);
 
 			if (endTime < now.getTime()) {
 				contest.setContestState(ContestState.COMPLETED);

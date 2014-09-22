@@ -102,7 +102,7 @@ public class QuizService implements IQuizService {
         QuizContest c = contestDao.getContest(contestId);
         if (c != null && c instanceof ScheduledContest) {
             ScheduledContest sc = (ScheduledContest) c;
-            long time = sc.getStartTime().getTime() + ((sc.getDurationHours() * 60 + sc.getDurationMinutes()) * 60000);
+            long time = sc.getStartTime().getTime() + ((sc.getDuration().getHours() * 60 + sc.getDuration().getMinutes()) * 60000);
             return ((time - System.currentTimeMillis()) / 1000);
         }
         return 0;
