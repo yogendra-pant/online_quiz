@@ -16,4 +16,5 @@ import java.util.List;
 public interface IUserDao {
         public abstract void add(User user);
 	public abstract User get(long userID);
+        public abstract User getUserByName(String username);
 }

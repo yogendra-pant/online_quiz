@@ -8,6 +8,7 @@
     <http pattern="/index.jsp" security="none"/>
     <http>
         <intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/registerUser" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/**" access="ROLE_USER"/>
 <!--        <intercept-url pattern="/books/{id}" access="ROLE_ADMIN'"/>-->
         <!--<intercept-url pattern="/addBook.html" access="hasRole('ROLE_ADMIN')"/>-->
@@ -15,13 +16,10 @@
         <logout logout-success-url="/login.jsp"/>
     </http>	
 
+
     <authentication-manager alias="authenticationManager">
-        <authentication-provider>
-            <user-service>
-                <user name="puneet" password="puneet" authorities="ROLE_USER"/>
-            </user-service>
- 
-        </authentication-provider>
+        <authentication-provider ref="customAuthenticationProvider"/>
+           
     </authentication-manager>
 
 	

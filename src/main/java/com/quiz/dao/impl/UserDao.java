@@ -25,6 +25,9 @@ public class UserDao extends AbstractDao implements IUserDao {
         super(sf);
     }
 
+  
+    
+
    
 
     @Override
@@ -38,6 +41,12 @@ public class UserDao extends AbstractDao implements IUserDao {
     public User get(long userID) {
         User user = (User) sf.getCurrentSession().get(User.class, userID);
         return user;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public User getUserByName(String username) {
+      return (User) getQuery("select u from User u where u.userName=?",username).uniqueResult();
     }
 
 }

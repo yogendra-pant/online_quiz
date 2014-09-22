@@ -16,6 +16,7 @@ import com.quiz.entities.Visibility;
 import com.quiz.service.IContestService;
 import com.quiz.service.impl.AuthenticationContext;
 import com.quiz.shared.entities.ContestInfo;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
@@ -63,7 +64,9 @@ public class ContestController {
 
     @RequestMapping(value = "/addContest", method = RequestMethod.GET)
     public String addUser(@ModelAttribute("contestInfo") ContestInfo contestInfo,ModelMap model) {
-        contestInfo.setContestDate(new Date(new Long(1411409652)));
+       Calendar cal=Calendar.getInstance();
+       cal.setTimeInMillis(System.currentTimeMillis()+10*24*60*60*1000);
+        contestInfo.setContestDate(cal.getTime());
         contestInfo.setContestName("test");
         contestInfo.setOrganizerEmail("puneetkhanal@gmail.com");
         contestInfo.setOrganizerName("puneet");

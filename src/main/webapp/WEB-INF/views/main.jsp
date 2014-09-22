@@ -6,8 +6,8 @@
 
 <!DOCTYPE html>
 <style type="text/css">
-    table.myTable { border-collapse:collapse; }
-    table.myTable td, table.myTable th { border:1px solid black;padding:5px; }
+    table.myTable { border-collapse:collapse;  }
+    table.myTable td, table.myTable th { border:1px solid black;padding:5px; margin: 15px; }
 </style>
 
 <html>
@@ -15,12 +15,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <jsp:include page="header.jsp" />
-    </head>
-    <body>
         <a href="registerUser">Register User</a>
         <a href="addContest">Add Quiz Contest</a>
-
         <a href="addQuiz">Add Quiz</a>
+    </head>
+    <body>
+        
         <table class="myTable">
             <tr>
                 <td>Contest Name</td>

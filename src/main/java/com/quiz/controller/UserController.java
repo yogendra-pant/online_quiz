@@ -35,7 +35,7 @@ public class UserController {
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
     public String addUser(@Valid User user, BindingResult result) {        
         System.out.println("register user");
-        String view="success";
+        String view="login";
         String error="Password did not match";
         if(!result.hasErrors()){
             if(user.getConfirmPassword().equals(user.getPassword())){

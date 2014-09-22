@@ -20,15 +20,12 @@ http://www.springframework.org/schema/tx
 
     <mvc:annotation-driven />
     <context:component-scan base-package="com" />
-    <bean id="abstractDao" class="com.quiz.dao.AbstractDao" abstract="true">
-        <constructor-arg ref="sessionFactory" />
-</bean>
+    
     <bean id="contestDao" class="com.quiz.dao.ContestDao" parent="abstractDao">
     </bean>
     <bean id="quizDao" class="com.quiz.dao.impl.QuizDao" parent="abstractDao">
       </bean>
-	 <bean id="userDao" class="com.quiz.dao.impl.UserDao" parent="abstractDao">
-          </bean>
+	 
     <bean id="questionDao" class="com.quiz.dao.impl.QuestionDao" parent="abstractDao">
     </bean>
 
@@ -67,5 +64,12 @@ http://www.springframework.org/schema/tx
     <bean id="contestService" class="com.quiz.service.impl.ContestService">
         <constructor-arg index="0" ref="contestDao" />
         <constructor-arg index="1" ref="quizDao" />  
+    </bean>
+    
+     <bean id="abstractDao" class="com.quiz.dao.AbstractDao" abstract="true">
+        <constructor-arg ref="sessionFactory" />
+    </bean>
+    
+    <bean id="userDao" class="com.quiz.dao.impl.UserDao" parent="abstractDao">
     </bean>
 </beans>

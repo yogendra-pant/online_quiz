@@ -6,12 +6,18 @@
 
 package com.quiz.app;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author Yogendra
  */
 public class App {
     public static void main(String[] args) {
-        System.out.println("project development has been started");
+    
+       Calendar cal=Calendar.getInstance();
+       cal.setTimeInMillis(System.currentTimeMillis()+10*24*60*60*1000);
+       System.out.println(cal.getTime());
     }
 }
