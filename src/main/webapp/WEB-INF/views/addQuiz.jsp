@@ -6,27 +6,34 @@
 <!DOCTYPE html>
 <html>
     <head>
-         <jsp:include page="header.jsp" />
+        <jsp:include page="header.jsp" />
         <form:form commandName="quiz" action="addQuestion" method="post">
-            <h1>Enter Quiz Info</h1>
-            <table >
+        <h1>Enter Quiz Info</h1>
+        <table >
 
-                <tr>
-                    <td>Quiz Name:</td>
-                    <td><form:input type="text" path="displayName" name="displayName" /> 
-                    </td>
-                </tr>
-                <tr>
-                    <td>Description:</td>
-                    <td><form:input type="text" path="description" name="description" />                    
-                    </td>
-                </tr>
+            <tr>
+                <td>Quiz Name:</td>
+                <td><form:input type="text" path="displayName" name="displayName" /> 
+                </td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td><form:input type="text" path="description" name="description" />                    
+                </td>
+            </tr>
 
 
-                <tr>
-            </table>
-            <h1>Add Question!</h1>
-            <table>
+            <tr>
+        </table>
+        <h1>Add Question!</h1>
+        <table>
+            <tr>
+                <td>Point:</td>
+                <td><form:input type="text" path="point" name="point" /> 
+                    <%--<form:errors path="question" cssClass="error" />--%>
+                </td>
+            </tr>
+            <tr>
                 <td>Question:</td>
                 <td><form:input type="text" path="question" name="question" /> 
                     <%--<form:errors path="question" cssClass="error" />--%>
@@ -40,27 +47,26 @@
             </tr>
         </table>
         <input type="submit" value="Add question"></>
-       
+
     </form:form>
-        
-         <form action="save" method="post">
-            <button type="submit">Save Quiz</button>
-        </form>
+
+    <form action="save" method="post">
+        <button type="submit">Save Quiz</button>
+    </form>
     <h1>Questions with Answers</h1>
     <table>
         <tr>
             <td>Question</td>
             <td>Answer</td>
-            <td>Update</td>
-            <td>Delete</td>
+            <td>Point</td>
         </tr>
         <c:forEach var="ques" items="${questions}">
             <tr>
 
                 <td>${ques.question}</td>
                 <td>${ques.solution}</td>
-                <td>update</td>
-                <td>Delete</td>
+                <td>${ques.point}</td>
+               
             </tr>
         </c:forEach> 
     </table>

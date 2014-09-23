@@ -23,6 +23,7 @@ public interface IContestDao {
 	Contestant storeContestant(Contestant t);
 
 	Contestant getContestant(long contestId, long userId);
+        Contestant getContestant(long contestantId);
 
 	QuizContest getContest(long contestId);
 

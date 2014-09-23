@@ -12,16 +12,23 @@
         <title>Quiz Page</title>
     </head>
     <body>
-        <form:form  commandName="quizSolution" action="submitQuiz?contestId=${contestId}" method="post">
+        <form:form  commandName="quizSolution" action="submitGrade?contestantId=${contestantId}" method="post">
             <table>            
                 <c:forEach var="quest" items="${quizSolution.questionSolutions}" varStatus="vs">
                     <tr>
-                        <td>[${quest.point}] Question.${vs.index+1} ${quest.question}</td>
+                        <td>[${quiz.questions[vs.index].point}] Question.${vs.index+1} ${quiz.questions[vs.index].question} </td>
+                    </tr>
+                    <tr>
+                    <td><form:input path="questionSolutions[${vs.index}].point"
+                                    />
+                    <%--<form:errors path="question" cssClass="error" />--%>
+                </td>
                     </tr>
                     <tr>                        
-                        <td><form:input path="questionSolutions[${vs.index}].solution"
-                                    /></td>
+                        <td>User Solution: ${quest.solution}</td>
                     </tr>
+                    
+                    
                 </c:forEach>
             </table>
             

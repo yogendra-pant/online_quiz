@@ -42,7 +42,7 @@
                 <tr>
                     <td> Confirm Password:</td>
                     <td><form:input type="password" path="confirmPassword" name="confirmPassword" />
-                        <form:errors path="confirmPassword" cssClass="error" />
+                        <form:errors path="confirmPassword"/>
                     </td>
                 </tr>
             </table>

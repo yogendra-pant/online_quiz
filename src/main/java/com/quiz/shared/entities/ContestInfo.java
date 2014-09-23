@@ -30,7 +30,7 @@ public class ContestInfo {
     @Future
     private Date contestDate;
     @NotNull
-    @DateTimeFormat(pattern = "hh:mm:ss")
+    @DateTimeFormat(pattern = "HH:mm:ss")
     private Date contestDuration;
     @NotNull
     @NotEmpty

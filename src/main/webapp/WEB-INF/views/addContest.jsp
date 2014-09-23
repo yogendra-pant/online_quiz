@@ -55,6 +55,7 @@
                 </td>
             </tr>
         </table>
+                <form:hidden path="contestId" />
         <input type="submit"/>
 
     </form:form>

@@ -17,7 +17,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
 
-
 /**
  *
  * @author Yogendra
@@ -35,28 +34,25 @@ public class User {
     @NotEmpty
     @Email
     private String emailId;
-   @Pattern(regexp="(^$|[0-9]{10})")
+    @Pattern(regexp = "(^$|[0-9]{10})")
     private String phoneNumber;
     @NotNull
     @NotEmpty
     private String password;
     @Transient
     @NotNull
-    @NotEmpty
     private String confirmPassword;
 
-       
     public User() {
     }
 
-    public User(String userName, String phoneNumber,String emailID, String password, String cofirmPassword) {
+    public User(String userName, String phoneNumber, String emailID, String password, String cofirmPassword) {
         this.userName = userName;
         this.phoneNumber = phoneNumber;
         this.password = password;
-        this.emailId=emailID;
-        this.confirmPassword=cofirmPassword;
+        this.emailId = emailID;
+        this.confirmPassword = cofirmPassword;
     }
-
 
     public void setUserId(int userId) {
         this.userId = userId;
@@ -93,15 +89,25 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-     public String getConfirmPassword() {
+
+    public String getConfirmPassword() {
         return confirmPassword;
     }
 
     public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
+        this.confirmPassword=confirmPassword;
+        checkPassword();
     }
-    
-    public long getId(){
+
+    private void checkPassword() {
+        if (this.password == null || this.confirmPassword == null) {
+            return;
+        } else if (!this.password.equals(confirmPassword)) {
+            this.confirmPassword = null;
+        }
+    }
+
+    public long getId() {
         return userId;
     }
 

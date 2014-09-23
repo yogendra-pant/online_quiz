@@ -20,33 +20,29 @@ public abstract class QuizContest extends EntityObject {
 
     private String gameName;
 
-    private int quizId;
-    
-    private Quiz quiz;
+    private long quizId;
 
     protected List<Contestant> contestants;
+    
+    private long contestOwnerId;
 
     public QuizContest() {
 
     }
 
-    
-
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    public Quiz getQuiz() {
-        return quiz;
+    public long getContestOwnerId() {
+        return contestOwnerId;
     }
 
-    public void setQuiz(Quiz quiz) {
-        this.quiz = quiz;
+    public void setContestOwnerId(long contestOwnerId) {
+        this.contestOwnerId = contestOwnerId;
     }
 
-   public int getQuizId() {
+   public long getQuizId() {
         return quizId;
     }
 
-    public void setQuizId(int quizId) {
+    public void setQuizId(long quizId) {
         this.quizId = quizId;
     }
 

@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
 public @interface Password {
 	Class<?>[] groups() default {};
 
-	String message() default "{cc.catalysts.cp.validation.constraints.Password.message}";
+	String message() default "{Password do no match}";
 
 	Class<? extends Payload>[] payload() default {};
 }

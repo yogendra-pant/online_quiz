@@ -3,7 +3,10 @@ package com.quiz.service;
 
 
 import com.quiz.entities.Contestant;
+import com.quiz.entities.Quiz;
+import com.quiz.entities.QuizSolution;
 import com.quiz.entities.ScheduledContest;
+import com.quiz.entities.User;
 import com.quiz.shared.entities.ContestInfo;
 import com.quiz.shared.entities.LevelInfo;
 import com.quiz.shared.entities.LevelTime;
@@ -18,21 +21,15 @@ import org.springframework.core.io.Resource;
 
 public interface IContestService {
 
-	Map<String, String> submitResults(Map<String, String> results, long contestId);
+	void submitResults(QuizSolution quizSolution, long contestId);
 
 	boolean isGameFinished(long contestId);
-
-	LevelInfo getLevelInfo(long contestId);
 
 	ScheduleContestResult scheduleContest(ContestInfo contestInfo);
 
 	ScheduleContestResult updateContest(ContestInfo contestInfo);
 
-	boolean deleteContest(ContestInfo contestInfo);
-
-	List<LevelTime> getLevelTimes(long contestId);
-
-	double getDuration(long contestId);
+	boolean deleteContest(long contestId);
 
 	boolean isRegistered(long contestId);
 
@@ -42,11 +39,6 @@ public interface IContestService {
 
 	List<Contestant> getContestants(long contestId);
 
-	UserTime getUserTime(long contestId);
-
-	int getNumberOfLevels(long contestId);
-
-	String getContestantCompletedLevelTestsStatus(long contestId);
-        
+        public User getUser();
 
 }

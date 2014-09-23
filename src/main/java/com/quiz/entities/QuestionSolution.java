@@ -14,17 +14,17 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author puneetkhanal
  */
 @Entity
-public class Question extends EntityObject {
+public class QuestionSolution extends EntityObject {
 
     private String question;
     private String solution;
     private int point;
 
-    public Question() {
+    public QuestionSolution() {
 
     }
 
-    public Question(String question, String solution, int point) {
+    public QuestionSolution(String question, String solution, int point) {
         this.question = question;
         this.solution = solution;
         this.point=point;

@@ -9,29 +9,28 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
-public class Quiz extends EntityObject {
+public class QuizSolution extends EntityObject{
 
     private static final long serialVersionUID = 1L;
-
+    
     private String name;
 
     private String displayName;
 
     private String description;
-
+    
     private String question;
     private String solution;
     private int point;
-
+    
     private Visibility visibility;
-
-    private List<Question> questions = new ArrayList<Question>();
-
-    public Quiz() {
-
+    
+    private List<QuestionSolution> questionSolutions=new ArrayList<QuestionSolution>();
+    
+    public QuizSolution(){
+        
     }
 
-    @Transient
     public int getPoint() {
         return point;
     }
@@ -40,7 +39,7 @@ public class Quiz extends EntityObject {
         this.point = point;
     }
 
-    @Transient
+    
     public String getQuestion() {
         return question;
     }
@@ -49,7 +48,6 @@ public class Quiz extends EntityObject {
         this.question = question;
     }
 
-    @Transient
     public String getSolution() {
         return solution;
     }
@@ -82,18 +80,19 @@ public class Quiz extends EntityObject {
         this.description = description;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    public List<Question> getQuestions() {
-        return questions;
+
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    public List<QuestionSolution> getQuestionSolutions() {
+        return questionSolutions;
     }
 
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
+    public void setQuestionSolutions(List<QuestionSolution> questionSolutions) {
+        this.questionSolutions = questionSolutions;
     }
-
+    
     @Transient
-    public int getNrOfQuestions() {
-        return questions.size();
+    public int getNrOfQuestions(){
+        return questionSolutions.size();
     }
 
     public Visibility getVisibility() {
@@ -106,7 +105,7 @@ public class Quiz extends EntityObject {
 
     @Override
     public String toString() {
-        return getId() + ":" + displayName;
+        return getId()+":"+displayName;
     }
 
 }

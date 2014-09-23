@@ -3,6 +3,7 @@ package com.quiz.dao.impl;
 import com.quiz.dao.AbstractDao;
 import com.quiz.dao.IQuizDao;
 import com.quiz.entities.Quiz;
+import com.quiz.entities.QuizSolution;
 import com.quiz.entities.Visibility;
 import java.util.List;
 import org.hibernate.SessionFactory;
@@ -59,6 +60,18 @@ public class QuizDao extends AbstractDao implements IQuizDao {
     @Override
     public void deleteQuiz(Quiz quiz) {
         sf.getCurrentSession().save(quiz);
+    }
+
+    @Override
+    public void storeQuizSolution(QuizSolution quiz) {
+        try{
+             
+       sf.getCurrentSession().save(quiz);
+      sf.getCurrentSession().flush();
+      
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

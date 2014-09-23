@@ -152,12 +152,12 @@ public class QuizService implements IQuizService {
             result.setUserLevelTimes(levelTimes);
             result.setName(contestTant.getUser().getUserName());
 //			result.setTestsFailed(contestTant.getFailedConter());
-            result.setCompletedLevel(contestTant.isFinished() ? contestTant.getCurrentLevel() : (contestTant.getCurrentLevel() - 1));
+//            result.setCompletedLevel(contestTant.isFinished() ? contestTant.getCurrentLevel() : (contestTant.getCurrentLevel() - 1));
 //			result.setSourceCode(contestTant.getSourceCode());
             result.setFinishedDate(contestTant.getFinishedDate());
             result.setFinished(contestTant.isFinished());
 //			result.setCodingLanguage(contestTant.getCodingLanguage());
-            result.setEmailId(contestTant.getEmailId());
+//            result.setEmailId(contestTant.getEmailId());
             coders.add(result);
 
         }
@@ -168,20 +168,20 @@ public class QuizService implements IQuizService {
     public List<TrainingInfo> getTrainingContests() {
         List<TrainingContest> contests = contestDao.getTrainingContests();
         List<TrainingInfo> trainingInfos = new ArrayList<TrainingInfo>();
-        for (TrainingContest trainingContest : contests) {
+//        for (TrainingContest trainingContest : contests) {
 
-            if (trainingContest.getQuiz() == null) {
-//				logger.error("Could not find GameInfo for " + trainingContest.getGameName());
-            } else {
-                TrainingInfo info = new TrainingInfo();
-                info.setContestId(trainingContest.getId());
-                info.setContestName(trainingContest.getQuiz().getName());
-                info.setDescription(trainingContest.getQuiz().getDescription());
-//				info.setSeverity(gameInfo.getSeverity());
-//				info.setNrOfLevels(gameInfo.getNrOfLevels());
-                trainingInfos.add(info);
-            }
-        }
+//            if (trainingContest.getQuiz() == null) {
+////				logger.error("Could not find GameInfo for " + trainingContest.getGameName());
+//            } else {
+//                TrainingInfo info = new TrainingInfo();
+//                info.setContestId(trainingContest.getId());
+//                info.setContestName(trainingContest.getQuiz().getName());
+//                info.setDescription(trainingContest.getQuiz().getDescription());
+////				info.setSeverity(gameInfo.getSeverity());
+////				info.setNrOfLevels(gameInfo.getNrOfLevels());
+//                trainingInfos.add(info);
+//            }
+//        }
         return trainingInfos;
     }
 

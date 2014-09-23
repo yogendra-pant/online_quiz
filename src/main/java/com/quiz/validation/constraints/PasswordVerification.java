@@ -20,7 +20,7 @@ public @interface PasswordVerification {
 
 	Class<?>[] groups() default {};
 
-	String message() default "{cc.catalysts.cp.validation.constraints.PasswordVerification.message}";
+	String message() default "Password do not match";
 
 	Class<? extends Payload>[] payload() default {};
 }

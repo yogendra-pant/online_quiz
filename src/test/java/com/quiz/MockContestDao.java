@@ -115,4 +115,9 @@ public class MockContestDao implements IContestDao {
 		return null;
 	}
 
+    @Override
+    public Contestant getContestant(long contestantId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

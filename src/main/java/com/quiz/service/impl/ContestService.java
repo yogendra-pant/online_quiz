@@ -7,6 +7,7 @@ import com.quiz.entities.Contestant;
 import com.quiz.entities.LevelTimer;
 import com.quiz.entities.Quiz;
 import com.quiz.entities.QuizContest;
+import com.quiz.entities.QuizSolution;
 import com.quiz.entities.ScheduledContest;
 
 import com.quiz.entities.TrainingContest;
@@ -46,56 +47,7 @@ public class ContestService implements IContestService {
         this.userDao=userDao;
     }
     
-    @Override
-    public double getDuration(long contestId) {
-        Contestant contestant = getContestant(contestId);
-        
-        if (contestant.isPaused()) {
-            return contestant.getDuration() / 1000;
-        }
-        
-        if (contestant.isFinished()) {
-            return contestant.getDuration() / 1000;
-        }
-        
-        long diff = contestant.getDuration() + System.currentTimeMillis() - contestant.getStartTime();
-        
-        return diff / 1000;
-    }
     
-    @Override
-    public LevelInfo getLevelInfo(long contestId) {
-        QuizContest contest = contestDao.getContest(contestId);
-        if (contest == null) {
-//			logger.error("Invalid Contest {}", contestId);
-        }
-        
-        Contestant contestant = getContestant(contestId);
-        if (contestant == null) {
-//			logger.error("Invalid contestant for contest {}, for user {}", contestId, AuthenticationContext.getCurrentUser().getId());
-        }
-        Quiz game = quizDao.getQuiz(contest.getQuiz().getId());
-        
-        if (game == null) {
-//			logger.error("No game found with name {}", contestId, contest.getGameName());
-        }
-        return new LevelInfo(game.getNrOfQuestions(), contestant.getCurrentLevel(), contestant.getSelectedLevel(),
-                contestant.isFinished());
-    }
-    
-    @Override
-    public List<LevelTime> getLevelTimes(long contestId) {
-        Contestant contesTant = getContestant(contestId);
-        List<LevelTimer> levelTimers = contestDao.getLevelTime(contesTant.getId());
-        List<LevelTime> levelTimes = new ArrayList<LevelTime>();
-        for (LevelTimer levelTimer : levelTimers) {
-            LevelTime levelTime = new LevelTime();
-            levelTime.setLevel(levelTimer.getLevel());
-            levelTime.setDuration(levelTimer.getDuration());
-            levelTimes.add(levelTime);
-        }
-        return levelTimes;
-    }
     
     @Override
     public boolean isRegistered(long contestId) {
@@ -105,8 +57,7 @@ public class ContestService implements IContestService {
     
     @Override
     public Result joinContest(long contestId) {
-        User user=userDao.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
-        AuthenticationContext.user=user;
+        
         QuizContest c = contestDao.getContest(contestId);
         if (c == null) {
             return Result.Failure;
@@ -114,7 +65,8 @@ public class ContestService implements IContestService {
         if (!isRegistered(contestId)) {
             Contestant ct = new Contestant();
             ct.setContest(c);
-            ct.setUser((User) AuthenticationContext.getCurrentUser());
+            User user=getUser();
+            ct.setUser(user);
             
             if (ct.getUser() == null) {
                 return Result.Failure;
@@ -152,7 +104,8 @@ public class ContestService implements IContestService {
         System.out.println(args.length);
         Long id = Long.parseLong(args[0]);
         System.out.println(id);
-        s.setQuiz(quizDao.getQuiz(id));
+        s.setContestOwnerId(getUser().getId());
+        s.setQuizId(id);
         s.setQuizId(id.intValue());
         s.setDuration(contestInfo.getContestDuration());
         s.setContestState(ContestState.OPEN_FOR_REGISTRATION);
@@ -165,104 +118,18 @@ public class ContestService implements IContestService {
     }
     
     @Override
-    public boolean deleteContest(ContestInfo contestInfo) {
-        QuizContest c = contestDao.getContest(contestInfo.getContestId());
+    public boolean deleteContest(long contestId) {
+        QuizContest c = contestDao.getContest(contestId);
         contestDao.deleteContest(c);
         return true;
     }
-    
-    private void logContestInfo(String text, Contestant t, Object... args) {
-//		contestLogger
-//				.info("{}: User {} " + text, ArrayUtils.addAll(new Object[] { t.getContest().getName(), t.getUser().getName() }, args));
-    }
-    
+        
     @Override
-    public Map<String, String> submitResults(Map<String, String> results, long contestId) {
-//        boolean invalidTest = false;
-//        Contestant t = getContestant(contestId);
-//        QuizContest contest = contestDao.getContest(contestId);
-//        List<Test> tests = getTestCases(contestId);
-//
-//        if (tests.size() == 0) {
-//            return new HashMap<String, String>();
-//        }
-//
-//        Map<String, String> r = new HashMap<String, String>();
-//
-//        int failedCounter = 0;
-//
-//        String completedLevelTestsIndicator;
-//        String currentCompletedLevelTestsStatus = t.getCompletedLevelTestsIndicator();
-//
-//        StringBuffer testSummary = new StringBuffer();
-//        completedLevelTestsIndicator = "";
-//        int index = 0;
-//        //todo remember passed tests
-//        for (Test test : tests) {
-//            testSummary.append("   " + test.getData() + " (" + test.getName() + "): " + results.get(test.getData()));
-//            testSummary.append("\n         --> ");
-//
-//            if (currentCompletedLevelTestsStatus != null && !"".equals(currentCompletedLevelTestsStatus)) {
-//                if (currentCompletedLevelTestsStatus.charAt(index) == 'Y') {
-//                    r.put(test.getData(), Result.Success.name());
-//                    completedLevelTestsIndicator += "Y";
-//                    index++;
-//                    continue;
-//
-//                }
-//            }
-//            if (results.containsKey(test.getData()) && test.getSolutions().contains(trim(results.get(test.getData())))) {
-//                r.put(test.getData(), Result.Success.name());
-//                completedLevelTestsIndicator += "Y";
-//                testSummary.append("OK");
-//            } else if (results.get(test.getData()) != null && results.get(test.getData()).equals("")) {
-//                r.put(test.getData(), Result.Invalid.name());
-//                completedLevelTestsIndicator += "N";
-//                testSummary.append("INVALID");
-//                invalidTest = true;
-//            } else {
-//                r.put(test.getData(), Result.Failure.name());
-//                completedLevelTestsIndicator += "N";
-//                testSummary.append("ERROR");
-//                failedCounter++;
-//            }
-//            testSummary.append("\n");
-//            index++;
-//        }
-//        t.setCompletedLevelTestsIndicator(completedLevelTestsIndicator);
-//        logContestInfo("submits solution for level {}:\n{}     -- {} failure(s)", t, t.getCurrentLevel(), testSummary, failedCounter);
-//
-//        if (failedCounter == 0 && !invalidTest) {
-//            t.setCompletedLevelTestsIndicator("");
-//            Quiz game = quizDao.getGame(contest.getGameName());
-//
-//            LevelTimer l = new LevelTimer();
-//            l.setLevel(t.getCurrentLevel());
-//            l.setDuration((long) (getDuration(contestId)));
-//            l.setContestant(t);
-////			l.setLevelTestFails(t.getFailedConter());
-//
-//            l = contestDao.storeLevelTimer(l);
-////			t.getLevelTimers().add(l);
-//
-//            if (t.getCurrentLevel() < game.getGameInfo().getNrOfLevels()) {
-//                t.setCurrentLevel(t.getCurrentLevel() + 1);
-//                logContestInfo("reaches level {}", t, t.getCurrentLevel());
-//            } else {
-//                t.setDuration((long) (getDuration(contestId) * 1000));
-//                Date now = new Date();
-//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//                String ss = sdf.format(now);
-//                t.setFinishedDate(ss);
-//                t.setFinished(true);
-//                logContestInfo("finishes the contest in {}", t, t.getDuration());
-//            }
-//        } else {
-////			t.setFailedConter(t.getFailedConter() + failedCounter);
-//        }
-
-//        contestDao.storeContestant(t);
-        return null;
+    public void submitResults(QuizSolution quizSolution, long contestId) {
+       Contestant c= getContestant(contestId);
+       c.setQuizSolution(quizSolution);
+       contestDao.storeContestant(c);
+       System.out.println("persisted"+c.getQuizSolution().getId());
     }
     
     private String trim(String string) {
@@ -273,12 +140,15 @@ public class ContestService implements IContestService {
     }
     
     private Contestant getContestant(long contestId) {
-        User user = AuthenticationContext.getCurrentUser();
-        if (user == null) {
-            return null;
-        }
+       User user=getUser();
         return contestDao.getContestant(contestId, user.getId());
         
+    }
+    
+    @Override
+    public User getUser() {
+        User user =userDao.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
+       return user;
     }
     
     @Override
@@ -307,34 +177,26 @@ public class ContestService implements IContestService {
         }
         ScheduledContest s = (ScheduledContest) contestDao.getContest(contestInfo.getContestId());
         
-        s.setStartTime(contestInfo.getContestDate());
-//        s.setDurationHours(contestInfo.getDurationHours());
-//        s.setDurationMinutes(contestInfo.getDurationMinutes());
+        s.setName(contestInfo.getContestName());
+        System.out.println("updated contest name:"+contestInfo.getContestName());
+        long date = contestInfo.getContestDate().getTime();
+        s.setStartTime(new Date(date));
+        String[] args = contestInfo.getQuizName().split(":");
+        Long id = Long.parseLong(args[0]);
+        s.setQuizId(id);
+        s.setDuration(contestInfo.getContestDuration());
+        s.setContestState(ContestState.OPEN_FOR_REGISTRATION);
+        s.setOrganizer(contestInfo.getOrganizerName());
+        s.setOrganizerEmail(contestInfo.getOrganizerEmail());
 
         contestDao.storeContest(s);
         
         return ScheduleContestResult.Success;
     }
-    
-    @Override
-    public UserTime getUserTime(long contestId) {
-        Contestant contestant = getContestant(contestId);
-        return new UserTime(getDuration(contestId), contestant.isPaused());
-    }
-    
-    @Override
-    public int getNumberOfLevels(long contestId) {
-        QuizContest contest = contestDao.getContest(contestId);
-        Quiz game = quizDao.getQuiz(contest.getQuiz().getId());
-        return game.getNrOfQuestions();
-    }
-    
-    @Override
-    public String getContestantCompletedLevelTestsStatus(long contestId) {
-        Contestant t = getContestant(contestId);
-        return t.getCompletedLevelTestsIndicator();
-    }
 
+    
+    
+  
  
     
 }
