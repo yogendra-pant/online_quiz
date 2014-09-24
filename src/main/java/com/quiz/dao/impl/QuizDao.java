@@ -7,18 +7,18 @@ import com.quiz.entities.QuizSolution;
 import com.quiz.entities.Visibility;
 import java.util.List;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-@Transactional(propagation = Propagation.REQUIRES_NEW,rollbackFor = Throwable.class)
+@Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Throwable.class)
 public class QuizDao extends AbstractDao implements IQuizDao {
 
-    public QuizDao(){
-     super(null);   
+    public QuizDao() {
+        super(null);
     }
+
     public QuizDao(SessionFactory sf) {
         super(sf);
     }
@@ -30,22 +30,22 @@ public class QuizDao extends AbstractDao implements IQuizDao {
 
     @Override
     public void storeQuiz(Quiz quiz) {
-        try{
-             
-       sf.getCurrentSession().save(quiz);
-      sf.getCurrentSession().flush();
-      
-        }catch(Exception e){
+        try {
+
+            sf.getCurrentSession().save(quiz);
+            sf.getCurrentSession().flush();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
     public Quiz getQuiz(long id) {
-        Quiz quiz=null;
-        try{
-        quiz=(Quiz) sf.getCurrentSession().get(Quiz.class, id);
-        }catch(Exception e){
+        Quiz quiz = null;
+        try {
+            quiz = (Quiz) sf.getCurrentSession().get(Quiz.class, id);
+        } catch (Exception e) {
             e.printStackTrace();
             return quiz;
         }
@@ -64,12 +64,12 @@ public class QuizDao extends AbstractDao implements IQuizDao {
 
     @Override
     public void storeQuizSolution(QuizSolution quiz) {
-        try{
-             
-       sf.getCurrentSession().save(quiz);
-      sf.getCurrentSession().flush();
-      
-        }catch(Exception e){
+        try {
+
+            sf.getCurrentSession().save(quiz);
+            sf.getCurrentSession().flush();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -3,23 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quiz.service.impl;
 
 import com.quiz.dao.IContestDao;
 import com.quiz.dao.IQuizDao;
-import com.quiz.entities.QuizContest;
-import com.quiz.entities.Contestant;
 import com.quiz.entities.Quiz;
 
-import com.quiz.entities.ScheduledContest;
-import com.quiz.entities.TrainingContest;
-import com.quiz.entities.Visibility;
 import com.quiz.service.IQuizService;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,9 +27,9 @@ public class QuizService implements IQuizService {
     }
 
     @Override
-    public void storeQuiz(Quiz quiz){
+    public void storeQuiz(Quiz quiz) {
         gameDao.storeQuiz(quiz);
-        
+
     }
 
 }

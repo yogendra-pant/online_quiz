@@ -5,18 +5,17 @@ import com.quiz.entities.QuizSolution;
 import com.quiz.entities.Visibility;
 import java.util.List;
 
-
 public interface IQuizDao {
 
-	List<Quiz> getAvailableQuiz(Visibility visibility);
+    List<Quiz> getAvailableQuiz(Visibility visibility);
 
-	void storeQuiz(Quiz game);
+    void storeQuiz(Quiz game);
 
-        void storeQuizSolution(QuizSolution game);
-        
-	Quiz getQuiz(long id);
+    void storeQuizSolution(QuizSolution game);
 
-	void updateQuiz(Quiz game);
+    Quiz getQuiz(long id);
 
-	void deleteQuiz(Quiz game);
+    void updateQuiz(Quiz game);
+
+    void deleteQuiz(Quiz game);
 }

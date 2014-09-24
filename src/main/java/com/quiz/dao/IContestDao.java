@@ -7,31 +7,32 @@ import com.quiz.entities.TrainingContest;
 import com.quiz.web.model.ContestState;
 import java.util.List;
 
-
 public interface IContestDao {
-	QuizContest storeContest(QuizContest contest);
 
-	boolean deleteContest(QuizContest contest);
+    QuizContest storeContest(QuizContest contest);
 
-	List<TrainingContest> getTrainingContests();
+    boolean deleteContest(QuizContest contest);
 
-	List<ScheduledContest> getScheduledContests();
+    List<TrainingContest> getTrainingContests();
 
-	List<ScheduledContest> getScheduledContestsByState(ContestState state);
+    List<ScheduledContest> getScheduledContests();
 
-	Contestant storeContestant(Contestant t);
+    List<ScheduledContest> getScheduledContestsByState(ContestState state);
 
-	Contestant getContestant(long contestId, long userId);
-        Contestant getContestant(long contestantId);
+    Contestant storeContestant(Contestant t);
 
-	QuizContest getContest(long contestId);
+    Contestant getContestant(long contestId, long userId);
 
-	List<Contestant> getContestants(long contestId);
+    Contestant getContestant(long contestantId);
 
-	TrainingContest getTrainingContestByGame(String gameName);
+    QuizContest getContest(long contestId);
 
-	TrainingContest getTrainingContestById(long contestId);
+    List<Contestant> getContestants(long contestId);
 
-	ContestState getContestState(long contestId);
+    TrainingContest getTrainingContestByGame(String gameName);
+
+    TrainingContest getTrainingContestById(long contestId);
+
+    ContestState getContestState(long contestId);
 
 }

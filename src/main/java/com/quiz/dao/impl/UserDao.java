@@ -18,17 +18,12 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Yogendra
  */
 @Repository
-@Transactional(propagation = Propagation.MANDATORY,rollbackFor = Throwable.class)
+@Transactional(propagation = Propagation.MANDATORY, rollbackFor = Throwable.class)
 public class UserDao extends AbstractDao implements IUserDao {
 
     public UserDao(SessionFactory sf) {
         super(sf);
     }
-
-  
-    
-
-   
 
     @Override
     public void add(User user) {
@@ -46,7 +41,7 @@ public class UserDao extends AbstractDao implements IUserDao {
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public User getUserByName(String username) {
-      return (User) getQuery("select u from User u where u.userName=?",username).uniqueResult();
+        return (User) getQuery("select u from User u where u.userName=?", username).uniqueResult();
     }
 
 }

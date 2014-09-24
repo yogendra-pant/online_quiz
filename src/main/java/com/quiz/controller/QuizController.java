@@ -101,12 +101,12 @@ public class QuizController {
     }
 
     @RequestMapping(value = "/submitGrade", method = RequestMethod.POST)
-    public String viewSolutionGet(QuizSolution quizSolution,int contestantId) {
-        QuizSolution quizsol=contestDao.getContestant(contestantId).getQuizSolution();
-        int index=0;
+    public String viewSolutionGet(QuizSolution quizSolution, int contestantId) {
+        QuizSolution quizsol = contestDao.getContestant(contestantId).getQuizSolution();
+        int index = 0;
         for (QuestionSolution question : quizSolution.getQuestionSolutions()) {
-           QuestionSolution target= quizsol.getQuestionSolutions().get(index++);
-           target.setPoint(question.getPoint());
+            QuestionSolution target = quizsol.getQuestionSolutions().get(index++);
+            target.setPoint(question.getPoint());
         }
         quizDao.storeQuizSolution(quizsol);
         return "redirect:/main";

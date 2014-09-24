@@ -12,28 +12,27 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-
 public class UsernamePasswordAuthenticationProvider implements AuthenticationProvider {
 
-    
     private IUserDao userDao;
-    
-    public UsernamePasswordAuthenticationProvider(IUserDao userDao){
-        this.userDao=userDao;
+
+    public UsernamePasswordAuthenticationProvider(IUserDao userDao) {
+        this.userDao = userDao;
     }
+
     @Override
     public Authentication authenticate(Authentication a) throws AuthenticationException {
-        User user=userDao.getUserByName(a.getName());
-        if(user==null){
+        User user = userDao.getUserByName(a.getName());
+        if (user == null) {
             return null;
         }
         System.out.println(a.getCredentials());
-        System.out.println(a.getName()+" trying to log in");
-        if(user.getPassword().equals(a.getCredentials())){
-            List<GrantedAuthority> grantedAuths=new ArrayList<>();
+        System.out.println(a.getName() + " trying to log in");
+        if (user.getPassword().equals(a.getCredentials())) {
+            List<GrantedAuthority> grantedAuths = new ArrayList<>();
             grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
-            Authentication auth=new UsernamePasswordAuthenticationToken(user.getUserName(),user.getPassword(), grantedAuths);
-            
+            Authentication auth = new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword(), grantedAuths);
+
             return auth;
         }
         return null;
@@ -43,5 +42,5 @@ public class UsernamePasswordAuthenticationProvider implements AuthenticationPro
     public boolean supports(Class<?> type) {
         return type.equals(UsernamePasswordAuthenticationToken.class);
     }
-	
+
 }

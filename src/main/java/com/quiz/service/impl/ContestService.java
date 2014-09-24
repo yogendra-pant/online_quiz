@@ -207,7 +207,7 @@ public class ContestService implements IContestService {
             Calendar cal = Calendar.getInstance();
             cal.setTime(s.getStartTime());
 
-            cal.add(Calendar.MINUTE, -1);
+            cal.add(Calendar.MINUTE, +60);
 
             System.out.println("scheduling job at time:" + cal.getTime());
             SimpleTrigger trigger = (SimpleTrigger) newTrigger()

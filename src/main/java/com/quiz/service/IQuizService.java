@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quiz.service;
 
-
-import com.quiz.entities.Contestant;
 import com.quiz.entities.Quiz;
-import java.util.List;
-
-
 
 public interface IQuizService {
-        void storeQuiz(Quiz quiz);
+
+    void storeQuiz(Quiz quiz);
 
 }

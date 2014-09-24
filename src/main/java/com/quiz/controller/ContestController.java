@@ -85,7 +85,7 @@ public class ContestController {
             contestInfo.setOrganizerEmail(contest.getOrganizerEmail());
             contestInfo.setOrganizerName(contest.getOrganizer());
             contestInfo.setContestDuration(contest.getDuration());
-           
+
             contestInfo.setContestId(contest.getId());
         }
         model.addAttribute("quizList", quizDao.getAvailableQuiz(Visibility.Public));
@@ -93,7 +93,7 @@ public class ContestController {
     }
 
     @RequestMapping(value = "/addContest", method = RequestMethod.POST)
-    public String addUser(@Valid ContestInfo contestInfo, BindingResult result,SessionStatus sessionStatus) {
+    public String addUser(@Valid ContestInfo contestInfo, BindingResult result, SessionStatus sessionStatus) {
         String view = "redirect:main";
         if (!result.hasErrors()) {
 
@@ -115,12 +115,12 @@ public class ContestController {
         ScheduledContest contest = (ScheduledContest) contestDao.getContest(contestId);
         model.addAttribute("contest", contest);
         Contestant c = contestService.getContestantInfo(contestId);
-        if(c==null){
+        if (c == null) {
             model.addAttribute("joined", false);
-        }else{
+        } else {
             model.addAttribute("joined", true);
         }
-        System.out.println("joined"+model.get("joined"));
+        System.out.println("joined" + model.get("joined"));
         System.out.println(contest.getContestOwnerId() + ":" + contestService.getUser().getId());
         if (contest.getContestOwnerId() == contestService.getUser().getId()) {
             model.addAttribute("admin", true);
@@ -145,12 +145,12 @@ public class ContestController {
         QuizContest contest = contestDao.getContest(contestId);
         model.addAttribute("contest", contest);
         Contestant c = contestService.getContestantInfo(contestId);
-        if(c==null){
+        if (c == null) {
             model.addAttribute("joined", false);
-        }else{
+        } else {
             model.addAttribute("joined", true);
         }
-        System.out.println("joined"+model.get("joined"));
+        System.out.println("joined" + model.get("joined"));
         System.out.println(contest.getContestOwnerId() + ":" + contestService.getUser().getId());
         if (contest.getContestOwnerId() == contestService.getUser().getId()) {
             model.addAttribute("admin", true);

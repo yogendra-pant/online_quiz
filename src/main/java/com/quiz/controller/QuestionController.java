@@ -6,9 +6,7 @@
 package com.quiz.controller;
 
 import com.quiz.dao.IQuizDao;
-import com.quiz.entities.Question;
 import com.quiz.entities.Quiz;
-import com.quiz.service.impl.QuestionService;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
