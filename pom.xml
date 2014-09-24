@@ -100,11 +100,21 @@
             <version>3.2.2.RELEASE</version>
         </dependency>  
         
+    <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>4.0.2.RELEASE</version>
+        </dependency>
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
-            <version>1.8.5</version>
-        </dependency>      
+            <version>2.2.1</version>
+        </dependency>
+        <dependency>
+    <groupId>javax.mail</groupId>
+    <artifactId>mail</artifactId>
+    <version>1.4</version>
+</dependency>     
     </dependencies>
     <build>
         <plugins>

@@ -12,7 +12,7 @@
 
 <html>
     <head>
-        <META HTTP-EQUIV="Refresh" CONTENT="5; URL=http://localhost:8080/online_quiz/main">
+        <META HTTP-EQUIV="Refresh" CONTENT="10000; URL=http://localhost:8080/online_quiz/main">
         <title>JSP Page</title>
         <jsp:include page="header.jsp" />
 

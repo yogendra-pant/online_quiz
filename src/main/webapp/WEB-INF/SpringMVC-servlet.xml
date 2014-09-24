@@ -24,7 +24,7 @@ http://www.springframework.org/schema/tx
     <bean id="contestDao" class="com.quiz.dao.ContestDao" parent="abstractDao">
     </bean>
     <bean id="quizDao" class="com.quiz.dao.impl.QuizDao" parent="abstractDao">
-      </bean>
+    </bean>
 	 
     <bean id="questionDao" class="com.quiz.dao.impl.QuestionDao" parent="abstractDao">
     </bean>
@@ -56,7 +56,7 @@ http://www.springframework.org/schema/tx
     </bean>
     <bean id="quizService" class="com.quiz.service.impl.QuizService">
         <constructor-arg index="0" ref="quizDao" />
-         <constructor-arg index="1" ref="contestDao" />
+        <constructor-arg index="1" ref="contestDao" />
              
     </bean>
    
@@ -65,9 +65,10 @@ http://www.springframework.org/schema/tx
         <constructor-arg index="0" ref="contestDao" />
         <constructor-arg index="1" ref="quizDao" />  
         <constructor-arg index="2" ref="userDao" />  
+        <property name="scheduleFactory" ref="scheduleFactory"/>
     </bean>
     
-     <bean id="abstractDao" class="com.quiz.dao.AbstractDao" abstract="true">
+    <bean id="abstractDao" class="com.quiz.dao.AbstractDao" abstract="true">
         <constructor-arg ref="sessionFactory" />
     </bean>
     
@@ -75,5 +76,22 @@ http://www.springframework.org/schema/tx
     </bean>
     
     
-
+    <bean id="scheduleFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+      
+    </bean>
+    <context:component-scan base-package="cs544" /> 
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="587"/>
+        <property name="username" value="onlinequizhost@gmail.com"/>
+        <property name="password" value="confusetheconfusion"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>
 </beans>
