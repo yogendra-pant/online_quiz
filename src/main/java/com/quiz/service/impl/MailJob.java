@@ -5,9 +5,6 @@
  */
 package com.quiz.service.impl;
 
-import com.quiz.dao.ContestDao;
-import com.quiz.entities.Contestant;
-import com.quiz.entities.ScheduledContest;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -19,16 +16,10 @@ import org.quartz.JobExecutionException;
 public class MailJob implements Job {
 
     public void execute(JobExecutionContext jec) throws JobExecutionException {
-
         ApplicationMailer mailService = (ApplicationMailer) jec.getJobDetail().getJobDataMap().get("mailService");
-        long id = (long) jec.getJobDetail().getJobDataMap().get("contestId");
-        ContestDao contestDao = (ContestDao) jec.getJobDetail().getJobDataMap().get("contestDao");
-        ScheduledContest s = (ScheduledContest) contestDao.getContest(id);
-        System.out.println("sending email contestId:" + s.getId());
-        mailService.sendMail("puneetkhanal@gmail.com", "sending dummy mail", "sending dummy mail");
-        for (Contestant c : s.getContestants()) {
-            System.out.println("sending email to " + c.getUser().getEmailId());
-            mailService.sendMail(c.getUser().getEmailId(), "QuizContest " + s.getGameName() + "is starting in 1 minute.", "QuizContest " + s.getGameName() + "is starting in 1 minute.");
-        }
+        String emailId = (String) jec.getJobDetail().getJobDataMap().get("emailId");
+        String name = (String) jec.getJobDetail().getJobDataMap().get("name");
+        System.out.println("sending email to "+emailId);
+        mailService.sendMail(emailId, "QuizContest " + name + " is starting in 1 minute.", "QuizContest " +name + " is starting in 1 minute.");
     }
 }

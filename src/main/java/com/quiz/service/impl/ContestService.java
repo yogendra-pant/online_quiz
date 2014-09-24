@@ -78,6 +78,8 @@ public class ContestService implements IContestService {
             contestDao.storeContestant(ct);
             c.getContestants().add(ct);
             contestDao.storeContest(c);
+            
+            scheduleJob((ScheduledContest) c, ct);
             System.out.println("success joing contest by username " + ct.getUser().getUserName());
             return Result.Success;
         }
@@ -113,7 +115,6 @@ public class ContestService implements IContestService {
 
         contestDao.storeContest(s);
 
-        scheduleJob(s);
 
         return ScheduleContestResult.Success;
     }
@@ -195,23 +196,24 @@ public class ContestService implements IContestService {
         return ScheduleContestResult.Success;
     }
 
-    private void scheduleJob(ScheduledContest s) {
+    private void scheduleJob(ScheduledContest s,Contestant contestant) {
         try {
 
             JobDetail job = JobBuilder.newJob(MailJob.class)
-                    .withIdentity("mailJob" + s.getId())
+                    .withIdentity("mailJob" + contestant.getId())
                     .build();
             job.getJobDataMap().put("mailService", mailService);
-            job.getJobDataMap().put("contestId", s.getId());
-            job.getJobDataMap().put("contestDao", contestDao);
+            job.getJobDataMap().put("emailId", contestant.getUser().getEmailId());
+            job.getJobDataMap().put("name",s.getName());
+            
             Calendar cal = Calendar.getInstance();
             cal.setTime(s.getStartTime());
 
-            cal.add(Calendar.MINUTE, +60);
+            cal.add(Calendar.MINUTE, -1);
 
             System.out.println("scheduling job at time:" + cal.getTime());
             SimpleTrigger trigger = (SimpleTrigger) newTrigger()
-                    .withIdentity("mailJob" + s.getId())
+                    .withIdentity("mailJob" + contestant.getId())
                     .startAt(cal.getTime())
                     .build();
 

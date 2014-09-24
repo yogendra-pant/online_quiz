@@ -120,11 +120,8 @@ public class ContestController {
         } else {
             model.addAttribute("joined", true);
         }
-        System.out.println("joined" + model.get("joined"));
-        System.out.println(contest.getContestOwnerId() + ":" + contestService.getUser().getId());
         if (contest.getContestOwnerId() == contestService.getUser().getId()) {
             model.addAttribute("admin", true);
-            System.out.println("admin" + true);
         } else {
             model.addAttribute("admin", false);
         }
