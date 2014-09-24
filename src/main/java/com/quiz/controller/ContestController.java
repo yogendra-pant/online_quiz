@@ -19,6 +19,7 @@ import com.quiz.entities.Visibility;
 import com.quiz.service.IContestService;
 import com.quiz.web.model.ContestInfo;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
@@ -62,7 +63,7 @@ public class ContestController {
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String getScheduledContests(Model model) {
         List<ScheduledContest> contests = contestDao.getScheduledContests();
-        System.out.println(contests.size());
+        Collections.reverse(contests);
         model.addAttribute("contests", contests);
         return "main";
     }
