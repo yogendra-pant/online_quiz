@@ -1,4 +1,4 @@
-package com.quiz.shared.entities;
+package com.quiz.web.model;
 
 
 public enum Result {

@@ -1,13 +1,10 @@
 package com.quiz.dao;
 
-import com.quiz.dao.IContestDao;
 import com.quiz.entities.Contestant;
-import com.quiz.entities.LevelTimer;
-import com.quiz.entities.Question;
 import com.quiz.entities.QuizContest;
 import com.quiz.entities.ScheduledContest;
 import com.quiz.entities.TrainingContest;
-import com.quiz.shared.entities.ContestState;
+import com.quiz.web.model.ContestState;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.SessionFactory;
@@ -94,17 +91,6 @@ public class ContestDao extends AbstractDao implements IContestDao {
     @Override
     public TrainingContest getTrainingContestByGame(String gameName) {
         return (TrainingContest) getQuery("select t from TrainingContest t where t.gameName=?", gameName).uniqueResult();
-    }
-
-    @Override
-    public LevelTimer storeLevelTimer(LevelTimer l) {
-        sf.getCurrentSession().save(l);
-        return l;
-    }
-
-    @Override
-    public List<LevelTimer> getLevelTime(long contestantId) {
-        return getQuery("select l from LevelTimer l where l.contestant.id=?", contestantId).list();
     }
 
     @Override

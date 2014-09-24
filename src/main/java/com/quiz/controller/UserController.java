@@ -8,15 +8,12 @@ package com.quiz.controller;
 import com.quiz.dao.IUserDao;
 import com.quiz.entities.User;
 import com.quiz.service.IUserService;
-import com.quiz.validation.constraints.PasswordValidator;
+import com.quiz.utilities.PasswordValidator;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jmx.export.annotation.ManagedAttribute;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,7 +27,7 @@ public class UserController {
 
     @Resource
     IUserService userService;
-    
+
     @Autowired
     IUserDao userDao;
 
@@ -42,10 +39,10 @@ public class UserController {
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
     public String addUser(@Valid User user, BindingResult result) {
         String view = "login";
-        
-        PasswordValidator passwordValidator=new PasswordValidator(userDao.getUserByName(user.getUserName()));
+
+        PasswordValidator passwordValidator = new PasswordValidator(userDao.getUserByName(user.getUserName()));
         passwordValidator.validate(user, result);
-        
+
         if (!result.hasErrors()) {
 
             userService.add(user);

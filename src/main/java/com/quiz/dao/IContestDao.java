@@ -2,10 +2,9 @@ package com.quiz.dao;
 
 import com.quiz.entities.QuizContest;
 import com.quiz.entities.Contestant;
-import com.quiz.entities.LevelTimer;
 import com.quiz.entities.ScheduledContest;
 import com.quiz.entities.TrainingContest;
-import com.quiz.shared.entities.ContestState;
+import com.quiz.web.model.ContestState;
 import java.util.List;
 
 
@@ -30,10 +29,6 @@ public interface IContestDao {
 	List<Contestant> getContestants(long contestId);
 
 	TrainingContest getTrainingContestByGame(String gameName);
-
-	LevelTimer storeLevelTimer(LevelTimer l);
-
-	List<LevelTimer> getLevelTime(long contestantId);
 
 	TrainingContest getTrainingContestById(long contestId);
 

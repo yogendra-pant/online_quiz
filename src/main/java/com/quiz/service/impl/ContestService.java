@@ -10,10 +10,10 @@ import com.quiz.entities.ScheduledContest;
 
 import com.quiz.entities.User;
 import com.quiz.service.IContestService;
-import com.quiz.shared.entities.ContestInfo;
-import com.quiz.shared.entities.ContestState;
-import com.quiz.shared.entities.Result;
-import com.quiz.shared.entities.ScheduleContestResult;
+import com.quiz.web.model.ContestInfo;
+import com.quiz.web.model.ContestState;
+import com.quiz.web.model.Result;
+import com.quiz.web.model.ScheduleContestResult;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +38,7 @@ public class ContestService implements IContestService {
     private final IUserDao userDao;
 
     private Scheduler scheduleFactory;
-    
+
     @Autowired
     private ApplicationMailer mailService;
 
@@ -197,19 +197,19 @@ public class ContestService implements IContestService {
 
     private void scheduleJob(ScheduledContest s) {
         try {
-            
+
             JobDetail job = JobBuilder.newJob(MailJob.class)
                     .withIdentity("mailJob" + s.getId())
                     .build();
             job.getJobDataMap().put("mailService", mailService);
-            job.getJobDataMap().put("contestId",s.getId());
-             job.getJobDataMap().put("contestDao",contestDao);
+            job.getJobDataMap().put("contestId", s.getId());
+            job.getJobDataMap().put("contestDao", contestDao);
             Calendar cal = Calendar.getInstance();
             cal.setTime(s.getStartTime());
-            
+
             cal.add(Calendar.MINUTE, -1);
-            
-            System.out.println("scheduling job at time:"+ cal.getTime());
+
+            System.out.println("scheduling job at time:" + cal.getTime());
             SimpleTrigger trigger = (SimpleTrigger) newTrigger()
                     .withIdentity("mailJob" + s.getId())
                     .startAt(cal.getTime())

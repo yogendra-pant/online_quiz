@@ -17,7 +17,7 @@ import com.quiz.entities.QuizSolution;
 import com.quiz.entities.ScheduledContest;
 import com.quiz.entities.Visibility;
 import com.quiz.service.IContestService;
-import com.quiz.shared.entities.ContestInfo;
+import com.quiz.web.model.ContestInfo;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;

@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.quiz.shared.entities;
+package com.quiz.web.model;
 
 import com.quiz.entities.Quiz;
-import com.quiz.shared.entities.ContestState;
+import com.quiz.web.model.ContestState;
 import java.util.Date;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;

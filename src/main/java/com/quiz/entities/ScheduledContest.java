@@ -1,6 +1,6 @@
 package com.quiz.entities;
 
-import com.quiz.shared.entities.ContestState;
+import com.quiz.web.model.ContestState;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
