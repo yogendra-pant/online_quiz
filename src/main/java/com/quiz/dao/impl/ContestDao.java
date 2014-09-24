@@ -1,5 +1,7 @@
-package com.quiz.dao;
+package com.quiz.dao.impl;
 
+import com.quiz.dao.AbstractDao;
+import com.quiz.dao.IContestDao;
 import com.quiz.entities.Contestant;
 import com.quiz.entities.QuizContest;
 import com.quiz.entities.ScheduledContest;

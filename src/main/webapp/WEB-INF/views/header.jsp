@@ -13,13 +13,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Header</title>
     </head>
     <body>
 
         <a href="main">Home</a>
         <a href="j_spring_security_logout">Logout</a>
-        <h1>Quiz Contest Hosting Application</h1>
-
+        <h1>Quiz Contest Hosting Application User: </h1>
     </body>
 </html>

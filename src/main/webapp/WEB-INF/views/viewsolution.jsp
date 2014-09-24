@@ -9,7 +9,7 @@
     <head>
         <jsp:include page="header.jsp" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Quiz Page</title>
+        <title>View Solution</title>
     </head>
     <body>
         <form:form  commandName="quizSolution" action="submitGrade?contestantId=${contestantId}" method="post">

@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Add Quiz</title>
         <jsp:include page="header.jsp" />
         <form:form commandName="quiz" action="addQuestion" method="post">
         <h1>Enter Quiz Info</h1>

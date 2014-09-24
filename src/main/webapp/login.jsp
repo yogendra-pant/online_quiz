@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Login Page</title>
         <h1>Quiz Contest Hosting Application</h1>
           <a href="registerUser">Register</a>
         

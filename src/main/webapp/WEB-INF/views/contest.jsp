@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Contest Details</title>
         <jsp:include page="header.jsp" />
         
         <META HTTP-EQUIV="Refresh" CONTENT="5; URL=http://localhost:8080/online_quiz/detailsClick?contestId=${contest.id}">

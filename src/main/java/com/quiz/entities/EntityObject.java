@@ -5,7 +5,6 @@ import com.quiz.entities.IPersistable;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
-import com.quiz.annotations.DontSerialize;
 import com.quiz.entities.Identifiable;
 
 
@@ -54,7 +53,6 @@ public abstract class EntityObject extends Identifiable implements IPersistable 
 	// --------------------- Interface IPersistable ---------------------
     @Override
     @Transient
-    @DontSerialize
     public Object getIdObject() {
         return Long.valueOf(getId());
     }

@@ -13,7 +13,7 @@
 <html>
     <head>
         <META HTTP-EQUIV="Refresh" CONTENT="10000; URL=http://localhost:8080/online_quiz/main">
-        <title>JSP Page</title>
+        <title>Main</title>
         <jsp:include page="header.jsp" />
 
     <a href="addContest">Add Quiz Contest</a>

@@ -21,7 +21,7 @@ http://www.springframework.org/schema/tx
     <mvc:annotation-driven />
     <context:component-scan base-package="com" />
     
-    <bean id="contestDao" class="com.quiz.dao.ContestDao" parent="abstractDao">
+    <bean id="contestDao" class="com.quiz.dao.impl.ContestDao" parent="abstractDao">
     </bean>
     <bean id="quizDao" class="com.quiz.dao.impl.QuizDao" parent="abstractDao">
     </bean>
