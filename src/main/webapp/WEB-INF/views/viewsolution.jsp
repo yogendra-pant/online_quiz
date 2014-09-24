@@ -29,6 +29,11 @@
                     </tr>
                     
                     
+                    <tr>                        
+                        <td>Correct Solution: ${quiz.questions[vs.index].solution}</td>
+                    </tr>
+                    
+                    
                 </c:forEach>
             </table>
             

@@ -70,7 +70,7 @@ public class QuizController {
     public String saveQuiz(Quiz quiz, SessionStatus sessionStatus) {
         quizService.storeQuiz(quiz);
         sessionStatus.setComplete();
-        return "main";
+        return "redirect:/main";
     }
 
     @RequestMapping(value = "/submitQuiz", method = RequestMethod.POST)
