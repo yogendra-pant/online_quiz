@@ -14,14 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jackson.version>1.9.11</jackson.version>
     </properties>
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <configuration>
-            <warName>mavenproject1</warName>
-            <outputDirectory></outputDirectory>
-        </configuration>
-    </plugin>
     <dependencies>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -195,5 +187,5 @@
             </plugin>
         </plugins>
     </build>
-
+    
 </project>

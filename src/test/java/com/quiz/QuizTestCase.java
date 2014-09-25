@@ -18,14 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class QuizTestCase {
 
-    public QuizTestCase() {
-
-//        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-//        contestDao = context.getBean("contestDao", IContestDao.class);
-//        userDao = context.getBean("userDao", IUserDao.class);
-//        quizDao = context.getBean("quizDao", IQuizDao.class);
-    }
-
     @Autowired
     protected IContestDao contestDao;
 

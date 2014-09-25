@@ -107,6 +107,9 @@ public class ContestDao extends AbstractDao implements IContestDao {
     }
 
     private void checkStatus(ScheduledContest scheduledContest) {
+        if(scheduledContest==null||scheduledContest.getStartTime()==null){
+            return ;
+        }
         if (System.currentTimeMillis() > scheduledContest.getStartTime().getTime()) {
             scheduledContest.setContestState(ContestState.RUNNING);
         }

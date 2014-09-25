@@ -25,7 +25,7 @@
         <constructor-arg ref="sessionFactory" />
         
     </bean>
-    <bean id="contestDao" class="com.quiz.dao.ContestDao" parent="abstractDao">
+    <bean id="contestDao" class="com.quiz.dao.impl.ContestDao" parent="abstractDao">
         
     </bean>
     <bean id="userDao" class="com.quiz.dao.impl.UserDao" parent="abstractDao">
@@ -58,7 +58,7 @@
     <bean id="hibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="properties">
             <props>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
                 <prop key="hibernate.connection.pool_size">1</prop>
