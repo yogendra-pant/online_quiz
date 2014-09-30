@@ -15,7 +15,6 @@ import com.quiz.entities.Quiz;
 import com.quiz.entities.QuizContest;
 import com.quiz.entities.QuizSolution;
 import com.quiz.entities.ScheduledContest;
-import com.quiz.entities.Visibility;
 import com.quiz.service.IContestService;
 import com.quiz.web.model.ContestInfo;
 import java.util.Calendar;
@@ -89,7 +88,7 @@ public class ContestController {
 
             contestInfo.setContestId(contest.getId());
         }
-        model.addAttribute("quizList", quizDao.getAvailableQuiz(Visibility.Public));
+        model.addAttribute("quizList", quizDao.getAllQuiz());
         return "addContest";
     }
 
@@ -97,11 +96,10 @@ public class ContestController {
     public String addUser(@Valid ContestInfo contestInfo, BindingResult result, SessionStatus sessionStatus) {
         String view = "redirect:main";
         if (!result.hasErrors()) {
-
             if (contestInfo.getContestId() > 0) {
-                contestService.updateContest(contestInfo);
+                contestService.updateQuizContest(contestInfo);
             } else {
-                contestService.scheduleContest(contestInfo);
+                contestService.scheduleQuizContest(contestInfo);
             }
             sessionStatus.setComplete();
         } else {

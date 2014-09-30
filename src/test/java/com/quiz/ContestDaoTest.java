@@ -2,7 +2,6 @@ package com.quiz;
 
 import com.quiz.entities.Contestant;
 import com.quiz.entities.ScheduledContest;
-import com.quiz.entities.TrainingContest;
 import com.quiz.entities.User;
 import com.quiz.web.model.ContestState;
 import java.util.List;
@@ -12,32 +11,6 @@ import org.junit.Test;
 public class ContestDaoTest extends QuizTestCase {
 
     public ContestDaoTest() {
-
-    }
-
-    @Test
-    public void storeContest() {
-        TrainingContest t = new TrainingContest();
-        t.setName("ea");
-
-        t = (TrainingContest) contestDao.storeContest(t);
-
-        Assert.assertNotNull(t);
-
-    }
-
-    @Test
-    public void getTrainingContests() {
-        TrainingContest t = new TrainingContest();
-        t.setName("ea");
-
-        t = (TrainingContest) contestDao.storeContest(t);
-
-        Assert.assertNotNull(t);
-
-        List<TrainingContest> contests = contestDao.getTrainingContests();
-
-        Assert.assertEquals(1, contests.size());
 
     }
 
@@ -53,18 +26,6 @@ public class ContestDaoTest extends QuizTestCase {
 
     }
 
-    @Test
-    public void getScheduledContestByState() {
-        ScheduledContest c = new ScheduledContest();
-        c.setName("ea");
-        c.setContestState(ContestState.OPEN_FOR_REGISTRATION);
-
-        contestDao.storeContest(c);
-
-        List<ScheduledContest> contests = contestDao.getScheduledContestsByState(ContestState.OPEN_FOR_REGISTRATION);
-        Assert.assertEquals(1, contests.size());
-
-    }
 
     @Test
     public void getContest() {
@@ -135,18 +96,6 @@ public class ContestDaoTest extends QuizTestCase {
 
     }
 
-    @Test
-    public void getContestState() {
-        ScheduledContest c = new ScheduledContest();
-        c.setName("ea");
-        c.setContestState(ContestState.OPEN_FOR_REGISTRATION);
-
-        c = (ScheduledContest) contestDao.storeContest(c);
-
-        ContestState s = contestDao.getContestState(c.getId());
-
-        Assert.assertEquals(ContestState.OPEN_FOR_REGISTRATION, s);
-
-    }
+   
 
 }

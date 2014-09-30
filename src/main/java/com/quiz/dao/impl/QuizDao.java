@@ -4,7 +4,6 @@ import com.quiz.dao.AbstractDao;
 import com.quiz.dao.IQuizDao;
 import com.quiz.entities.Quiz;
 import com.quiz.entities.QuizSolution;
-import com.quiz.entities.Visibility;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -24,7 +23,7 @@ public class QuizDao extends AbstractDao implements IQuizDao {
     }
 
     @Override
-    public List<Quiz> getAvailableQuiz(Visibility visibility) {
+    public List<Quiz> getAllQuiz() {
         return getQuery("select q from Quiz q").list();
     }
 

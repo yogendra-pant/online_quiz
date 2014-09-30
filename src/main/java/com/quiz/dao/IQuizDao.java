@@ -2,20 +2,19 @@ package com.quiz.dao;
 
 import com.quiz.entities.Quiz;
 import com.quiz.entities.QuizSolution;
-import com.quiz.entities.Visibility;
 import java.util.List;
 
 public interface IQuizDao {
 
-    List<Quiz> getAvailableQuiz(Visibility visibility);
+    public List<Quiz> getAllQuiz();
 
-    void storeQuiz(Quiz game);
+    public void storeQuiz(Quiz game);
 
-    void storeQuizSolution(QuizSolution game);
+    public void storeQuizSolution(QuizSolution game);
 
-    Quiz getQuiz(long id);
+    public Quiz getQuiz(long id);
 
-    void updateQuiz(Quiz game);
+    public void updateQuiz(Quiz game);
 
-    void deleteQuiz(Quiz game);
+    public void deleteQuiz(Quiz game);
 }

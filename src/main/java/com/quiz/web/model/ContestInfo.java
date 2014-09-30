@@ -5,12 +5,9 @@
  */
 package com.quiz.web.model;
 
-import com.quiz.entities.Quiz;
-import com.quiz.web.model.ContestState;
 import java.util.Date;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -63,9 +60,6 @@ public class ContestInfo {
         this.quizName = quizName;
     }
 
-   
-
-   
     public ContestState getContestState() {
         return contestState;
     }

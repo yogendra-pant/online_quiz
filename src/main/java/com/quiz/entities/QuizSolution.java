@@ -5,30 +5,40 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
-public class QuizSolution extends EntityObject{
+public class QuizSolution{
 
-    private static final long serialVersionUID = 1L;
-    
+    private long id;
+
     private String name;
 
     private String displayName;
 
     private String description;
-    
+
     private String question;
     private String solution;
     private int point;
-    
-    private Visibility visibility;
-    
-    private List<QuestionSolution> questionSolutions=new ArrayList<QuestionSolution>();
-    
-    public QuizSolution(){
-        
+
+    private List<QuestionSolution> questionSolutions = new ArrayList<QuestionSolution>();
+
+    public QuizSolution() {
+
+    }
+
+    @Id
+    @GeneratedValue
+    public long getId() {
+        return id;
+    }
+
+    public final void setId(long id) {
+        this.id = id;
     }
 
     public int getPoint() {
@@ -39,7 +49,6 @@ public class QuizSolution extends EntityObject{
         this.point = point;
     }
 
-    
     public String getQuestion() {
         return question;
     }
@@ -80,8 +89,7 @@ public class QuizSolution extends EntityObject{
         this.description = description;
     }
 
-
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public List<QuestionSolution> getQuestionSolutions() {
         return questionSolutions;
     }
@@ -89,23 +97,15 @@ public class QuizSolution extends EntityObject{
     public void setQuestionSolutions(List<QuestionSolution> questionSolutions) {
         this.questionSolutions = questionSolutions;
     }
-    
+
     @Transient
-    public int getNrOfQuestions(){
+    public int getNrOfQuestions() {
         return questionSolutions.size();
-    }
-
-    public Visibility getVisibility() {
-        return visibility;
-    }
-
-    public void setVisibility(Visibility visibility) {
-        this.visibility = visibility;
     }
 
     @Override
     public String toString() {
-        return getId()+":"+displayName;
+        return getId() + ":" + displayName;
     }
 
 }

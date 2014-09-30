@@ -1,22 +1,20 @@
 package com.quiz.entities;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import org.hibernate.annotations.ForeignKey;
 
 @Entity
-public class Contestant extends EntityObject {
+public class Contestant{
 
-    private static final long serialVersionUID = 1L;
+    private long id;
 
     private QuizContest contest;
 
@@ -36,6 +34,16 @@ public class Contestant extends EntityObject {
 
     }
 
+    @Id
+    @GeneratedValue
+    public long getId() {
+        return id;
+    }
+
+    public final void setId(long id) {
+        this.id = id;
+    }
+    
     public long getStartTime() {
         return startTime;
     }
@@ -44,8 +52,7 @@ public class Contestant extends EntityObject {
         this.startTime = startTime;
     }
 
-
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public QuizSolution getQuizSolution() {
         return quizSolution;
     }
@@ -97,14 +104,14 @@ public class Contestant extends EntityObject {
     public boolean isFinished() {
         return finished;
     }
-    
+
     @Transient
-    public int getTotalPoints(){
-        int totalPoint=0;
-        if(quizSolution!=null){
-        for(QuestionSolution question:quizSolution.getQuestionSolutions()){
-            totalPoint+=question.getPoint();
-        }
+    public int getTotalPoints() {
+        int totalPoint = 0;
+        if (quizSolution != null) {
+            for (QuestionSolution question : quizSolution.getQuestionSolutions()) {
+                totalPoint += question.getPoint();
+            }
         }
         return totalPoint;
     }

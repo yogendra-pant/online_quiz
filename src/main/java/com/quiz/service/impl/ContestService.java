@@ -13,7 +13,6 @@ import com.quiz.service.IContestService;
 import com.quiz.web.model.ContestInfo;
 import com.quiz.web.model.ContestState;
 import com.quiz.web.model.Result;
-import com.quiz.web.model.ScheduleContestResult;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -78,7 +77,7 @@ public class ContestService implements IContestService {
             contestDao.storeContestant(ct);
             c.getContestants().add(ct);
             contestDao.storeContest(c);
-            
+
             scheduleJob((ScheduledContest) c, ct);
             System.out.println("success joing contest by username " + ct.getUser().getUserName());
             return Result.Success;
@@ -88,10 +87,9 @@ public class ContestService implements IContestService {
     }
 
     @Override
-    public ScheduleContestResult scheduleContest(ContestInfo contestInfo) {
+    public void scheduleQuizContest(ContestInfo contestInfo) {
         if (contestInfo.getContestDate().getTime() < (System.currentTimeMillis())) {
-            System.out.println(ScheduleContestResult.StartDateInvalid);
-            return ScheduleContestResult.StartDateInvalid;
+            return;
         }
 
         ScheduledContest s = new ScheduledContest();
@@ -115,8 +113,7 @@ public class ContestService implements IContestService {
 
         contestDao.storeContest(s);
 
-
-        return ScheduleContestResult.Success;
+        return;
     }
 
     @Override
@@ -127,7 +124,7 @@ public class ContestService implements IContestService {
     }
 
     @Override
-    public void submitResults(QuizSolution quizSolution, long contestId) {
+    public void submitSolutions(QuizSolution quizSolution, long contestId) {
         Contestant c = getContestant(contestId);
         c.setQuizSolution(quizSolution);
         contestDao.storeContestant(c);
@@ -154,12 +151,6 @@ public class ContestService implements IContestService {
     }
 
     @Override
-    public boolean isGameFinished(long contestId) {
-        Contestant contestant = getContestant(contestId);
-        return contestant.isFinished();
-    }
-
-    @Override
     public Contestant getContestantInfo(long contestId) {
         User user = userDao.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
         return contestDao.getContestant(contestId, user.getId());
@@ -172,10 +163,10 @@ public class ContestService implements IContestService {
     }
 
     @Override
-    public ScheduleContestResult updateContest(ContestInfo contestInfo) {
+    public void updateQuizContest(ContestInfo contestInfo) {
         if (contestInfo.getContestDate().getTime() < (System.currentTimeMillis())) {
 
-            return ScheduleContestResult.StartDateInvalid;
+            return;
         }
         ScheduledContest s = (ScheduledContest) contestDao.getContest(contestInfo.getContestId());
 
@@ -193,10 +184,9 @@ public class ContestService implements IContestService {
 
         contestDao.storeContest(s);
 
-        return ScheduleContestResult.Success;
     }
 
-    private void scheduleJob(ScheduledContest s,Contestant contestant) {
+    private void scheduleJob(ScheduledContest s, Contestant contestant) {
         try {
 
             JobDetail job = JobBuilder.newJob(MailJob.class)
@@ -204,8 +194,8 @@ public class ContestService implements IContestService {
                     .build();
             job.getJobDataMap().put("mailService", mailService);
             job.getJobDataMap().put("emailId", contestant.getUser().getEmailId());
-            job.getJobDataMap().put("name",s.getName());
-            
+            job.getJobDataMap().put("name", s.getName());
+
             Calendar cal = Calendar.getInstance();
             cal.setTime(s.getStartTime());
 

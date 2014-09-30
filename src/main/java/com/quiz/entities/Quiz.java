@@ -5,14 +5,15 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
-public class Quiz extends EntityObject {
+public class Quiz {
 
-    private static final long serialVersionUID = 1L;
-
+    private long id;
     private String name;
 
     private String displayName;
@@ -22,13 +23,20 @@ public class Quiz extends EntityObject {
     private String question;
     private String solution;
     private int point;
-
-    private Visibility visibility;
-
     private List<Question> questions = new ArrayList<Question>();
 
     public Quiz() {
 
+    }
+
+    @Id
+    @GeneratedValue
+    public long getId() {
+        return id;
+    }
+
+    public final void setId(long id) {
+        this.id = id;
     }
 
     @Transient
@@ -94,14 +102,6 @@ public class Quiz extends EntityObject {
     @Transient
     public int getNrOfQuestions() {
         return questions.size();
-    }
-
-    public Visibility getVisibility() {
-        return visibility;
-    }
-
-    public void setVisibility(Visibility visibility) {
-        this.visibility = visibility;
     }
 
     @Override

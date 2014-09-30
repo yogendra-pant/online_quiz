@@ -5,7 +5,6 @@ import com.quiz.dao.IContestDao;
 import com.quiz.entities.Contestant;
 import com.quiz.entities.QuizContest;
 import com.quiz.entities.ScheduledContest;
-import com.quiz.entities.TrainingContest;
 import com.quiz.web.model.ContestState;
 import java.util.Date;
 import java.util.List;
@@ -30,17 +29,6 @@ public class ContestDao extends AbstractDao implements IContestDao {
         }
         return scheduledContests;
 
-    }
-
-    @Override
-    public List<ScheduledContest> getScheduledContestsByState(ContestState state) {
-        return getQuery("select s from ScheduledContest s where s.contestState=?", state).list();
-
-    }
-
-    @Override
-    public List<TrainingContest> getTrainingContests() {
-        return getQuery("select t from TrainingContest t").list();
     }
 
     @Override
@@ -88,22 +76,6 @@ public class ContestDao extends AbstractDao implements IContestDao {
     @Override
     public List<Contestant> getContestants(long contestId) {
         return getQuery("select c from Contestant c where c.contest.id=?", contestId).list();
-    }
-
-    @Override
-    public TrainingContest getTrainingContestByGame(String gameName) {
-        return (TrainingContest) getQuery("select t from TrainingContest t where t.gameName=?", gameName).uniqueResult();
-    }
-
-    @Override
-    public TrainingContest getTrainingContestById(long contestId) {
-
-        return (TrainingContest) getQuery("select t from TrainingContest t where t.id=?", contestId).uniqueResult();
-    }
-
-    @Override
-    public ContestState getContestState(long contestId) {
-        return (ContestState) getQuery("select c.contestState from QuizContest c where c.id=?", contestId).uniqueResult();
     }
 
     private void checkStatus(ScheduledContest scheduledContest) {

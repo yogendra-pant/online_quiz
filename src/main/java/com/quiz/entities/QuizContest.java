@@ -5,6 +5,8 @@ import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
@@ -12,9 +14,9 @@ import javax.persistence.Transient;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class QuizContest extends EntityObject {
+public abstract class QuizContest {
 
-    private static final long serialVersionUID = 1L;
+    private long id;
 
     private String name;
 
@@ -30,6 +32,15 @@ public abstract class QuizContest extends EntityObject {
 
     }
 
+    @Id
+    @GeneratedValue
+    public long getId() {
+        return id;
+    }
+
+    public final void setId(long id) {
+        this.id = id;
+    }
     public long getContestOwnerId() {
         return contestOwnerId;
     }
