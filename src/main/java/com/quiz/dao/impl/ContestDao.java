@@ -40,11 +40,8 @@ public class ContestDao extends AbstractDao implements IContestDao {
 
     @Override
     public boolean deleteContest(QuizContest contest) {
-        System.out.println("deleting" + contest.getId());
         List<Contestant> contestContestants = getContestants(contest.getId());
-
         for (Contestant contestant : contestContestants) {
-
             sf.getCurrentSession().delete(contestant);
         }
         sf.getCurrentSession().delete(contest);
@@ -79,8 +76,8 @@ public class ContestDao extends AbstractDao implements IContestDao {
     }
 
     private void checkStatus(ScheduledContest scheduledContest) {
-        if(scheduledContest==null||scheduledContest.getStartTime()==null){
-            return ;
+        if (scheduledContest == null || scheduledContest.getStartTime() == null) {
+            return;
         }
         if (System.currentTimeMillis() > scheduledContest.getStartTime().getTime()) {
             scheduledContest.setContestState(ContestState.RUNNING);

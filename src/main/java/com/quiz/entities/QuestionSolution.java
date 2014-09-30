@@ -8,15 +8,13 @@ package com.quiz.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
  * @author puneetkhanal
  */
 @Entity
-public class QuestionSolution{
+public class QuestionSolution {
 
     private long id;
     private String question;
@@ -30,7 +28,7 @@ public class QuestionSolution{
     public QuestionSolution(String question, String solution, int point) {
         this.question = question;
         this.solution = solution;
-        this.point=point;
+        this.point = point;
     }
 
     @Id
@@ -42,6 +40,7 @@ public class QuestionSolution{
     public final void setId(long id) {
         this.id = id;
     }
+
     public int getPoint() {
         return point;
     }
@@ -49,7 +48,7 @@ public class QuestionSolution{
     public void setPoint(int point) {
         this.point = point;
     }
-    
+
     public String getQuestion() {
         return question;
     }

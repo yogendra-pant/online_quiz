@@ -1,15 +1,12 @@
 package com.quiz.entities;
 
 import java.util.List;
-import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -25,7 +22,7 @@ public abstract class QuizContest {
     private long quizId;
 
     protected List<Contestant> contestants;
-    
+
     private long contestOwnerId;
 
     public QuizContest() {
@@ -41,6 +38,7 @@ public abstract class QuizContest {
     public final void setId(long id) {
         this.id = id;
     }
+
     public long getContestOwnerId() {
         return contestOwnerId;
     }
@@ -49,7 +47,7 @@ public abstract class QuizContest {
         this.contestOwnerId = contestOwnerId;
     }
 
-   public long getQuizId() {
+    public long getQuizId() {
         return quizId;
     }
 

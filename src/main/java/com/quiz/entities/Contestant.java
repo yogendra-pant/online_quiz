@@ -9,10 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
-import org.hibernate.annotations.ForeignKey;
 
 @Entity
-public class Contestant{
+public class Contestant {
 
     private long id;
 
@@ -21,10 +20,6 @@ public class Contestant{
     private User user;
 
     private long duration;
-
-    private boolean finished;
-
-    private String finishedDate;
 
     private QuizSolution quizSolution;
 
@@ -43,7 +38,7 @@ public class Contestant{
     public final void setId(long id) {
         this.id = id;
     }
-    
+
     public long getStartTime() {
         return startTime;
     }
@@ -66,7 +61,6 @@ public class Contestant{
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @ForeignKey(name = "FK_CONTEST_TO_CONTESTANT")
     public QuizContest getContest() {
         return contest;
     }
@@ -79,30 +73,13 @@ public class Contestant{
         return duration;
     }
 
-    public void setFinishedDate(String finishedDate) {
-        this.finishedDate = finishedDate;
-    }
-
-    public String getFinishedDate() {
-        return finishedDate;
-    }
-
     public void setUser(User user) {
         this.user = user;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @ForeignKey(name = "FK_USER_TO_CONTESTANT")
     public User getUser() {
         return user;
-    }
-
-    public void setFinished(boolean finished) {
-        this.finished = finished;
-    }
-
-    public boolean isFinished() {
-        return finished;
     }
 
     @Transient
